@@ -160,7 +160,7 @@ Se till att allt från tidigare stämmer. Se även till att helt ta bort mappar 
 Om en person ska få tillgång till Fysikmotorn:
 - Skapa ett konto
 - Lägg till dem i grupper för de projekt de arbetar på (men inte fler)
-- Om de är Webmaster, lägg till dem i sys gruppen.
+- Om de är Webmaster, lägg till dem i sudo gruppen.
 
 ## Migrering eller Lokal installation
 En av fördelarna med den nya server arkitekturen är att det är lätt att installera på olika maskiner! Det gör att man kan ha en lokal kopia för att pröva saker på, innan man råkar krascha hemsidan. Det innebär också att det är relativt lätt att migrera server om så skulle behövas.
