@@ -1,2 +1,8 @@
-services
-!services/nginx/nginx.conf
+/services/arcade
+/services/ffusion.se
+/services/f.kth.se
+/services/fysikalen.se
+/services/google
+/services/kons-count
+/services/namndkompassen
+/services/nginx/certificates
