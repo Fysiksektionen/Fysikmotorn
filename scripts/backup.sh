@@ -22,7 +22,6 @@ function download_backup {
 
 	shift
 
-
 	# echo "Removing old files"
 	rm -r $@
 
