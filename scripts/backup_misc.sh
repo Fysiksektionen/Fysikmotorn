@@ -1,7 +1,7 @@
 source ./backup.sh
 cd ..
 
-FILES=( services/google/GoogleIDPMetadata.xml )
+FILES=( services/misc )
 NAME="misc"
 
 case $1 in

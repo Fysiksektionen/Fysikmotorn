@@ -64,8 +64,10 @@ Det finns en homepage som är skriven i React och byggs på Github, och sedan fi
 
 Båda installeras samtidigt med nedladdningsskriptet för Arcade.
 
-### Google
-Det är inte ett projekt, men en fil som behövde finnas tillgänglig för KTH:s autentisering tjänst. Det är oklart om den fortfarande behöver vara tillgänglig, men får vara det tills vidare (men ta gärna bort typ 2026). Det är även ett bra exempel om hur enskilda filer kan finnas tillgängliga på servern. Notera att den är tillagd under volumes i Docker Compose filen.
+### Misc
+Det är inte ett projekt, utom en samling filer som ska finnas tillgängliga ändå. 
+
+Just nu innehåller det en fil som behövde finnas tillgänglig för KTH:s autentisering tjänst. Det är oklart om den fortfarande behöver vara tillgänglig, men får vara det tills vidare (men ta gärna bort typ 2026). Det är även ett bra exempel om hur enskilda filer kan finnas tillgängliga på servern. Notera att den är tillagd under volumes i Docker Compose filen.
 
 ## Nedladdningsskript
 För att ladda ner projekten finns det nedladdningsskript i scripts mappen. Dessa är anpassade efter varje projekt, och för ett nytt projekt bör man kopiera och anpassa detta.
