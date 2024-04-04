@@ -170,7 +170,7 @@ Jag rekommenderar att man som ny Webmaster försöker att få igång en lokal ko
 Stegen:
 - Du behöver en installation av Linux, för att de flesta av skripten ska fungera. Det går säkert med Windows också, men kan kräva en del pillande.
 - Om du migrerar till en faktisk server:
-    - Skapa användare, en för dig med root access, och även för andra som ska ha. Se även till att det finns användare för alla projekten, och en för själva server repot.
+    - Skapa användare, en för dig med root access, och även för andra som ska ha. Se även till att det finns användare för alla projekten, men själva server repot kan hamna under /Fysikmotorn eller liknande.
 - Installera och konfigurera programmen som nämns under "Program på server"
 - Ladda ner Fysikmotor repot under en egen användare.
 - Skapa services mappen, och länka med symlänkar till de olika projekten
@@ -182,6 +182,7 @@ Stegen:
 - Klart! Testa allt och förbättra guiden med dina nya insikter.
 
 ## Program på servern
+OBS! På Ubuntu verkar snap inte fungera på grund av att den inte tillåter root enkelt, och apt-get har för gamla versioner. På vardera programs sida finns dock lämpliga installations instruktioner.
 
 ### Docker
 Docker är ett program för att isolera program och ge en konsekvent miljö för dem att exekveras i. Docker är också betydligt mer resurs effektiv än en virtual machine.
@@ -195,7 +196,7 @@ rclone är ett verktyg för att kopiera till och från olika fjärrfilsystem.
 
 På Fysikmotorn används det för att sköta backups, då dessa blir uppladdade på sektionens Google Drive.
 
-Det kräver ett projekt, vilket ägs av "Backup Fysikmotorn" kontot (lösenord finns i Webmaster nyckelringen). Själva filerna läggs in i den delade enheten "Backup Fysikmotorn", som Webmaster också har tillgång till.
+Det kräver ett projekt, vilket ägs av "Fysikmotorn" kontot (lösenord finns i Webmaster nyckelringen). Själva filerna läggs in i den delade enheten "Backup Fysikmotorn", som Webmaster också har tillgång till.
 
 För att rclone ska fungera på en enhet måste de konfigureras, följ då guiderna:
 https://rclone.org/drive/
@@ -221,6 +222,8 @@ Notera att .gitignore används för att inte fylla repot med de olika projekten 
 Github är tjänsten vi använder för att hosta våra Git repon. Där i används bland annat Github Actions för att bygga projekten som behöver byggas. Fortsätt med detta!
 
 Dessutom används Github CLI för att kunna ladda ner releases enkelt. De används i nedladdningsskripten.
+
+Vi använder github kontot kopplat till fysikmotorn@f.kth.se för att kunna logga in i Github CLI.
 
 
 ## Kontakt
