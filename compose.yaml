@@ -38,7 +38,7 @@ services:
       - ./services/f.kth.se/mariadb:/var/lib/mysql
     env_file: ./services/f.kth.se/.env
     environment:
-      MARIADB_DATABASE: db_name
+      MARIADB_DATABASE: fkthse
 
   wordpress-f.kth.se:
     container_name: wordpress-f.kth.se
@@ -52,7 +52,7 @@ services:
     env_file: ./services/f.kth.se/.env
     environment:
       WORDPRESS_DB_HOST: mariadb-f.kth.se
-      WORDPRESS_DB_NAME: db_name
+      WORDPRESS_DB_NAME: fkthse
       WORDPRESS_TABLE_PREFIX: wp_
 
 
@@ -65,7 +65,7 @@ services:
       - ./services/fysikalen.se/mariadb/:/var/lib/mysql
     env_file: ./services/fysikalen.se/.env
     environment:
-      MARIADB_DATABASE: db_name
+      MARIADB_DATABASE: fysikalense
 
   wordpress-fysikalen.se:
     container_name: wordpress-fysikalen.se
@@ -79,7 +79,7 @@ services:
     env_file: ./services/fysikalen.se/.env
     environment:
       WORDPRESS_DB_HOST: mariadb-fysikalen.se
-      WORDPRESS_DB_NAME: db_name
+      WORDPRESS_DB_NAME: fysikalense
       WORDPRESS_TABLE_PREFIX: wp_
 
 
@@ -92,7 +92,7 @@ services:
       - ./services/ffusion.se/mariadb:/var/lib/mysql
     env_file: ./services/ffusion.se/.env
     environment:
-      MARIADB_DATABASE: db_name
+      MARIADB_DATABASE: ffusionse
 
 
   wordpress-ffusion.se:
@@ -106,7 +106,7 @@ services:
     env_file: ./services/ffusion.se/.env
     environment:
       WORDPRESS_DB_HOST: mariadb-ffusion.se
-      WORDPRESS_DB_NAME: db_name
+      WORDPRESS_DB_NAME: ffusionse
       WORDPRESS_TABLE_PREFIX: wp_
 
   # Other apps for f.kth.se
