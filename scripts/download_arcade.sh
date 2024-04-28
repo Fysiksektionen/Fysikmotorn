@@ -8,3 +8,4 @@ install_release Fysiksektionen/Arcade-website source ../services/arcade/ $ARCADE
 install_release Fysiksektionen/arcade-home build.tar.gz ../services/arcade/home/ $ARCADE_HOME_VERSION
 
 ln -sf home/index.html ../services/arcade/index.html
+ln -s FnollsFlykt ../services/arcade/fnollsflykt
