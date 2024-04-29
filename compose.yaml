@@ -114,7 +114,7 @@ services:
   ## Sangbok
   sangbok:
     container_name: sangbok
-    image: ghcr.io/fysiksektionen/sangbok-html:latest
+    image: ghcr.io/fysiksektionen/sangbok-html@sha256:${SANGBOK_SHA}
 
 
   ## Kons Count
