@@ -86,6 +86,7 @@ Det är viktigt att dessa fungerar för att inte data ska försvinna, och för a
 OBS! Skripten måste köras med scripts som working directory, och det krävs oftast sudo.
 OBS! Det krävs lite extra lagring för att genomföra en backup, 2GB är definitivt tillräckligt!
 OBS! För att underlätta felsökande efter stora ändringar, laddas även .env, nginx.conf, och Docker Compose filen upp. Kolla i dessa ifall något gått sönder och du tror att det har omkonfigurerats, (de laddas dock inte ner i vanliga fall eftersom de påverkar mycket annat också).
+OBS! Notera att backupen inte följer symlinks om inte det är själva argumentet.
 
 ## Säkerhet
 Det finns vissa filer på servern som inte bör kunna ses av andra processer eller användare eftersom de är känsliga. I protect skriptet, samt i backup skripten, sköts att dessa inte kan ses av övriga användare, men de måste uppdateras om fler tillkommer.
@@ -104,11 +105,26 @@ Om nya hemliga filer tillkommer, till exempel Swish koder, se till att backup oc
 Certifikaten i services/nginx/certificates är till för att https ska fungera, och behöver ibland uppdateras. Planen är att det ska göras med hjälp av Certbot, men detta har inte än hunnit fixas :D
 
 ## Användare
-Användare på servern är personliga och namngivna efter KTH id:n. Ägaren får tillgång till deras konto genom att deras publika SSH nyckel läggs till.
+Användare på servern är personliga och namngivna efter KTH id:n. Ett konto skapas med hjälp av "adduser" kommandot. Ägaren får tillgång till deras konto genom att deras publika SSH nyckel läggs till under "~/.ssh/authorized_keys" mappen.
 
-Det finns även en användare per projekt. Denna används sällan som användare, men mappen som tillhör den används för att spara saker som kan ändras inom projektet.
+För att de ska ha tillgång till ett projekt, måste de läggas till i den grupp som tillhör detta. Dessa är ju nu: fkthse, ffusionse, fysikalense, arcade, namndkompassen och kons-count, och en användare läggs exempelvis till i en grupp genom kommandot "usermod -aG animals duck" om "animals" är gruppen och "duck" är användaren.
 
-För att användare sedan ska få tillgång till dessa, läggs de till i den gruppen. Det finns oftast ingen anledning att ta bort en person från ett projekt de en gång haft tillgång till, utom de kan oftast fortsätta ha tillgång (undantag viktiga personuppgifter).
+Det finns oftast ingen anledning att ta bort en person från ett projekt de en gång haft tillgång till, utom de kan oftast fortsätta ha tillgång (undantag viktiga personuppgifter).
+
+Om användaren är Webmaster ska de även läggas till i "sudo" gruppen vilket ger dem tillgång till "sudo" (super user do).
+
+## Filstruktur
+Filstrukturen på servern är för nuvarande:
+- /fysikmotorn: Innehåller detta repository.
+- /home: Innehåller användare, men också mappar för vardera projekt som ägs av grupperna
+- /fysikmotorn/services: Innehåller symlinks till de projekt mappar som finns i /home.
+
+## Filbehörigheter
+För att filer i en viss delad mapp ska gå att ändra för alla användare i en viss grupp, är det viktigt att "umask" är 002, att stickybit är satt, och att mappen har motsvarande grupp som sin.
+
+umask verkar vara 002 på Ubuntu som standard, och skriptet "share_dir.sh" kan användas för resterande!
+
+Notera att download skriptet också använder share_dir.sh för att ge rätt grupp tillgång, men endast om gruppen finns på datorn (för att inte strula lokalt).
 
 ## Att starta
 Det enda som krävs för att starta all tjänster är kommandot "docker compose up" (från mappen som innehåller Docker Compose filen). Det fungerar eftersom all kod som ska köras kontinuerligt, körs i Docker containrar konfigurerade i Docker Compose filen! Om du vill stänga ner är det istället "docker compose down" som gäller.
@@ -172,13 +188,13 @@ Jag rekommenderar att man som ny Webmaster försöker att få igång en lokal ko
 Stegen:
 - Du behöver en installation av Linux, för att de flesta av skripten ska fungera. Det går säkert med Windows också, men kan kräva en del pillande.
 - Om du migrerar till en faktisk server:
-    - Skapa användare, en för dig med root access, och även för andra som ska ha. Se även till att det finns användare för alla projekten, men själva server repot kan hamna under /Fysikmotorn eller liknande.
+    - Skapa användare, en för dig med root access, och även för andra som ska ha. 
 - Installera och konfigurera programmen som nämns under "Program på server"
-- Ladda ner Fysikmotor repot under en egen användare.
+- Ladda ner Fysikmotor repot som root till /fysikmotorn eller annan bra plats.
 - Skapa services mappen, och länka med symlänkar till de olika projekten
 - Kör alla nedladdningsskripten för att ladda ner static files
 - Kör alla backupskripts för att få alla data (se till att backups är nya)
-- Om du kör lokalt, eller inte flytta länkarna till nya servern:
+- Om du kör lokalt, eller inte vill flytta domänerna till nya servern:
     - Länka om f.kth.se och övriga domäner till IP adressen för servern (/etc/hosts för Linux)
 - Starta upp servern med docker compose up!
 - Klart! Testa allt och förbättra guiden med dina nya insikter.

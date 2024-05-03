@@ -1,4 +1,5 @@
 #! /bin/zsh
+source ./share_dir.sh
 
 function download_release {
 	local tdir=$(mktemp -d -t build-$(date +%Y-%m-%d-%H-%M-%S)-XXXXXXXXXX)
@@ -25,4 +26,8 @@ function install_release {
 	mkdir $3 2> /dev/null
 	rm -r $3/* 2> /dev/null
 	download_release $1 $2 $3 $4
+	
+	if [ $# = 1 ] && [ $( getent group $5 ) ]; then
+		share_dir $5 $3
+	fi
 }
