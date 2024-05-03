@@ -1,7 +1,7 @@
 source ./backup.sh
 cd ..
 
-FILES=( services/f.kth.se/ )
+FILES=( services/f.kth.se/mariadb services/f.kth.se/wordpress services/f.kth.se/.env )
 NAME="f.kth.se"
 
 case $1 in

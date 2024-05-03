@@ -29,7 +29,7 @@ function download_backup {
 	rclone copyto -P Drive:$backup /tmp/$backup
 
 	# echo "Extracting files"
-	tar -xf /tmp/$backup
+	tar -xf /tmp/$backup $@
 
 	rm /tmp/$backup
 }

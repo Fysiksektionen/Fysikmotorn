@@ -1,7 +1,7 @@
 source ./backup.sh
 cd ..
 
-FILES=( services/ffusion.se/ )
+FILES=( services/ffusion.se/mariadb services/ffusion.se/wordpress services/ffusion.se/.env )
 NAME="ffusion.se"
 
 case $1 in
