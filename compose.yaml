@@ -11,6 +11,7 @@ services:
       - wordpress-f.kth.se
       - wordpress-fysikalen.se
       - wordpress-ffusion.se
+      - wordpress-fadderiet
       - sangbok
       - kons-count
     volumes:
@@ -20,6 +21,7 @@ services:
       - ./services/f.kth.se/wordpress:/f.kth.se/wordpress
       - ./services/fysikalen.se/wordpress:/fysikalen.se/wordpress
       - ./services/ffusion.se/wordpress:/ffusion.se/wordpress
+      - ./services/fadderiet/wordpress:/f.kth.se/fadderiet
 
       - ./services/kons-count/static:/f.kth.se/counter
       - ./services/namndkompassen:/f.kth.se/namndkompassen
@@ -107,6 +109,33 @@ services:
     environment:
       WORDPRESS_DB_HOST: mariadb-ffusion.se
       WORDPRESS_DB_NAME: ffusionse
+      WORDPRESS_TABLE_PREFIX: wp_
+
+
+  # f.kth.se/fadderiet Wordpress and Database
+  mariadb-fadderiet:
+    container_name: mariadb-fadderiet
+    image: docker.io/mariadb
+    restart: unless-stopped
+    volumes:
+      - ./services/fadderiet/mariadb:/var/lib/mysql
+    env_file: ./services/fadderiet/.env
+    environment:
+      MARIADB_DATABASE: fadderiet
+
+
+  wordpress-fadderiet:
+    container_name: wordpress-fadderiet
+    image: docker.io/wordpress:6.4.3-php8.1-fpm-alpine
+    restart: unless-stopped
+    volumes:
+      - ./services/fadderiet/wordpress:/var/www/html/
+    depends_on:
+      - mariadb-fadderiet
+    env_file: ./services/fadderiet/.env
+    environment:
+      WORDPRESS_DB_HOST: mariadb-fadderiet
+      WORDPRESS_DB_NAME: fadderiet
       WORDPRESS_TABLE_PREFIX: wp_
 
   # Other apps for f.kth.se
