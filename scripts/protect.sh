@@ -8,10 +8,12 @@ TO_PROTECT=(
 	"services/f.kth.se/.env"
 	"services/fysikalen.se/.env"
 	"services/ffusion.se/.env"
+	"services/fadderiet/.env"
 
 	"services/f.kth.se/mariadb"
 	"services/fysikalen.se/mariadb"
 	"services/ffusion.se/mariadb"
+	"services/fadderiet/mariadb"
 );
 
 chmod -R 770 $TO_PROTECT
