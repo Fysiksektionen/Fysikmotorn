@@ -44,8 +44,7 @@ services:
 
   wordpress-f.kth.se:
     container_name: wordpress-f.kth.se
-    # image: wordpress:6.4.3-php8.1-fpm-alpine
-    image: docker.io/wordpress:5.6.1-php8.0-fpm-alpine
+    image: docker.io/wordpress:6.4.3-php8.1-fpm-alpine
     restart: unless-stopped
     volumes:
       - ./services/f.kth.se/wordpress:/var/www/html/
@@ -56,7 +55,6 @@ services:
       WORDPRESS_DB_HOST: mariadb-f.kth.se
       WORDPRESS_DB_NAME: fkthse
       WORDPRESS_TABLE_PREFIX: wp_
-
 
   # fysikalen.se Wordpress and Database
   mariadb-fysikalen.se:
