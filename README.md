@@ -107,7 +107,7 @@ Certifikaten i services/nginx/certificates är till för att https ska fungera, 
 ## Användare
 Användare på servern är personliga och namngivna efter KTH id:n. Ett konto skapas med hjälp av "adduser" kommandot. Ägaren får tillgång till deras konto genom att deras publika SSH nyckel läggs till under "~/.ssh/authorized_keys" mappen.
 
-För att de ska ha tillgång till ett projekt, måste de läggas till i den grupp som tillhör detta. Dessa är ju nu: fkthse, ffusionse, fysikalense, arcade, namndkompassen och kons-count, och en användare läggs exempelvis till i en grupp genom kommandot "usermod -aG animals duck" om "animals" är gruppen och "duck" är användaren.
+Det finns inget helt standardiserat sätt att ge folk tillgång till ett visst projekt. Om ett projekt ska ha en delad mapp kan man använda share_dir scriptet för att dela en folder med en grupp.
 
 Det finns oftast ingen anledning att ta bort en person från ett projekt de en gång haft tillgång till, utom de kan oftast fortsätta ha tillgång (undantag viktiga personuppgifter).
 
@@ -116,8 +116,7 @@ Om användaren är Webmaster ska de även läggas till i "sudo" gruppen vilket g
 ## Filstruktur
 Filstrukturen på servern är för nuvarande:
 - /fysikmotorn: Innehåller detta repository.
-- /home: Innehåller användare, men också mappar för vardera projekt som ägs av grupperna
-- /fysikmotorn/services: Innehåller symlinks till de projekt mappar som finns i /home.
+- /fysikmotorn/services: Innehåller alla projekten.
 
 ## Filbehörigheter
 För att filer i en viss delad mapp ska gå att ändra för alla användare i en viss grupp, är det viktigt att "umask" är 002, att stickybit är satt, och att mappen har motsvarande grupp som sin.
@@ -177,7 +176,6 @@ Se till att allt från tidigare stämmer. Se även till att helt ta bort mappar 
 ### Ny användare
 Om en person ska få tillgång till Fysikmotorn:
 - Skapa ett konto
-- Lägg till dem i grupper för de projekt de arbetar på (men inte fler)
 - Om de är Webmaster, lägg till dem i sudo gruppen.
 
 ## Migrering eller Lokal installation
