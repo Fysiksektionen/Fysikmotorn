@@ -18,6 +18,8 @@ services:
       - ./services/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./services/nginx/certificates:/etc/nginx/certificates
 
+      - ./services/certbot/static/:/certbot
+
       - ./services/f.kth.se/wordpress:/f.kth.se/wordpress
       - ./services/fysikalen.se/wordpress:/fysikalen.se/wordpress
       - ./services/ffusion.se/wordpress:/ffusion.se/wordpress
@@ -30,6 +32,14 @@ services:
       - ./services/arcade/home/index.html:/f.kth.se/arcade/index.html
 
       - ./services/misc/GoogleIDPMetadata.xml:/f.kth.se/google/GoogleIDPMetadata.xml
+
+  # Provides SSL certificates
+  certbot:
+    container_name: certbot
+    image: certbot/certbot:latest
+    volumes:
+      - ./services/certbot/static/:/var/www/certbot/
+      - ./services/certbot/conf/:/etc/letsencrypt/
 
   # f.kth.se Wordpress and Database
   mariadb-f.kth.se:
@@ -159,3 +169,4 @@ services:
     depends_on:
       - kons-count-redis
     init: true
+
