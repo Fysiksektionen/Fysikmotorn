@@ -32,6 +32,9 @@ services:
       - ./services/arcade/home/index.html:/f.kth.se/arcade/index.html
 
       - ./services/misc/GoogleIDPMetadata.xml:/f.kth.se/google/GoogleIDPMetadata.xml
+      - ./services/misc/f.png:/f.kth.se/f.png
+      - ./services/misc/logo.png:/f.kth.se/logo.png
+      - ./services/misc/robots.txt:/f.kth.se/robots.txt
 
   # Provides SSL certificates
   certbot:
