@@ -14,6 +14,9 @@ TO_PROTECT=(
 	"services/fysikalen.se/mariadb"
 	"services/ffusion.se/mariadb"
 	"services/fadderiet/mariadb"
+
+	"services/cyberfohs/secretkey.txt"
+	"services/cyberfohs/data"
 );
 
 chmod -R 770 $TO_PROTECT

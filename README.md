@@ -69,6 +69,13 @@ Det är inte ett projekt, utom en samling filer som ska finnas tillgängliga än
 
 Just nu innehåller det en fil som behövde finnas tillgänglig för KTH:s autentisering tjänst. Det är oklart om den fortfarande behöver vara tillgänglig, men får vara det tills vidare (men ta gärna bort typ 2026). Det är även ett bra exempel om hur enskilda filer kan finnas tillgängliga på servern. Notera att den är tillagd under volumes i Docker Compose filen.
 
+### Cyberföhs
+Cyberföhs-appen är en app som används under cyberföhsning under mottagningen. Appens front byggs för tillfället inte på github, men backenden gör det!
+
+Notera att den behöver en databas (som man kan skapa med ./init.sh kommandod om man har en terminal i containern (docker exec -it cyberfohs bash)), samt att den behöver static files (som genereras med ./manage.py collectstatic också inne i containern).
+
+OBS! Det här projektet brukar skötas av en grupp varje år, så de har förhoppningsvis lite koll!
+
 ## Nedladdningsskript
 För att ladda ner projekten finns det nedladdningsskript i scripts mappen. Dessa är anpassade efter varje projekt, och för ett nytt projekt bör man kopiera och anpassa detta.
 
