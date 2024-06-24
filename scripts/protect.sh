@@ -1,7 +1,7 @@
 cd ..
 
 TO_PROTECT=(
-	"services/nginx/certificates"
+	"services/certbot/conf"
 
 	"services/kons-count/server/service_account_auth_file.json"
 

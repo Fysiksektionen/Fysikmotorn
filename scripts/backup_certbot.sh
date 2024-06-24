@@ -1,8 +1,8 @@
 source ./backup.sh
 cd ..
 
-FILES=( services/nginx/certificates )
-NAME="nginx"
+FILES=( services/certbot/conf )
+NAME="certbot"
 
 case $1 in
 	upload|u)

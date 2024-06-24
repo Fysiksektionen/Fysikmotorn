@@ -17,7 +17,9 @@ services:
       - cyberfohs
     volumes:
       - ./services/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./services/nginx/certificates:/etc/nginx/certificates
+
+      - ./services/certbot/conf/live:/etc/nginx/certificates/live
+      - ./services/certbot/conf/archive:/etc/nginx/certificates/archive
 
       - ./services/certbot/static/:/certbot
 
