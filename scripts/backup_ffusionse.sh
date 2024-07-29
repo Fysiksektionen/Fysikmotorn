@@ -10,7 +10,7 @@ case $1 in
 	;;
 	download|d)
 		download_backup $NAME:$2 ${FILES[@]}
-		chmod -R 770 services/ffusion.se/mariadb services/ffusion.se/.env
+		chmod -R o-rwx services/ffusion.se/mariadb services/ffusion.se/.env
 	;;
 	*) echo "Did not choose option"; exit 1;;
 esac;

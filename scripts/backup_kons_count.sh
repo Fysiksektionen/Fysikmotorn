@@ -10,7 +10,7 @@ case $1 in
 	;;
 	download|d)
 		download_backup $NAME:$2 ${FILES[@]}
-		chmod -R 770 services/kons-count/server/service_account_auth_file.json
+		chmod -R o-rwx services/kons-count/server/service_account_auth_file.json
 	;;
 	*) echo "Did not choose option"; exit 1;;
 esac;

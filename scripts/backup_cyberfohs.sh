@@ -10,7 +10,7 @@ case $1 in
 	;;
 	download|d)
 		download_backup $NAME:$2 ${FILES[@]}
-		chmod -R 770 services/cyberfohs/secretkey.txt services/cyberfohs/data
+		chmod -R o-rwx services/cyberfohs/secretkey.txt services/cyberfohs/data
 	;;
 	*) echo "Did not choose option"; exit 1;;
 esac;

@@ -19,4 +19,4 @@ TO_PROTECT=(
 	"services/cyberfohs/data"
 );
 
-chmod -R 770 $TO_PROTECT
+chmod o-rwx $TO_PROTECT

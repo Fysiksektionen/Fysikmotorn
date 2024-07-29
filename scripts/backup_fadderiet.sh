@@ -10,7 +10,7 @@ case $1 in
 	;;
 	download|d)
 		download_backup $NAME:$2 ${FILES[@]}
-		chmod -R 770 services/fadderiet/mariadb services/fadderiet/.env
+		chmod -R o-rwx services/fadderiet/mariadb services/fadderiet/.env
 	;;
 	*) echo "Did not choose option"; exit 1;;
 esac;

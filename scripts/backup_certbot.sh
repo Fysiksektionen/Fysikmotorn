@@ -10,7 +10,7 @@ case $1 in
 	;;
 	download|d)
 		download_backup $NAME:$2 ${FILES[@]}
-		chmod -R 600 $FILES
+		chmod -R o-rwx $FILES
 	;;
 	*) echo "Did not choose option"; exit 1;;
 esac;
