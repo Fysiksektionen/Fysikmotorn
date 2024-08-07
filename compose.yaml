@@ -37,6 +37,7 @@ services:
       - ./services/cyberfohs/static:/f.kth.se/cyberfohs/public/staticfiles
 
       - ./services/misc/GoogleIDPMetadata.xml:/f.kth.se/google/GoogleIDPMetadata.xml
+      - ./services/misc/googlebbfc4851489dd255.html:/f.kth.se/googlebbfc4851489dd255.html
       - ./services/misc/f.png:/f.kth.se/f.png
       - ./services/misc/logo.png:/f.kth.se/logo.png
       - ./services/misc/robots.txt:/f.kth.se/robots.txt
