@@ -35,6 +35,7 @@ services:
       - ./services/arcade/home/index.html:/f.kth.se/arcade/index.html
 
       - ./services/cyberfohs/static:/f.kth.se/cyberfohs/public/staticfiles
+      - ./services/cyberfohs/media:/f.kth.se/cyberfohs/public/media
 
       - ./services/misc/GoogleIDPMetadata.xml:/f.kth.se/google/GoogleIDPMetadata.xml
       - ./services/misc/googlebbfc4851489dd255.html:/f.kth.se/googlebbfc4851489dd255.html
@@ -184,6 +185,8 @@ services:
     image: ghcr.io/fysiksektionen/cyberfohs-appen:${CYBERFOHS_VERSION}
     volumes:
       - ./services/cyberfohs/static:/src/static
+      - ./services/cyberfohs/media:/src/media
       - ./services/cyberfohs/data/db:/src/db
       - ./services/cyberfohs/secretkey.txt:/src/secretkey.txt
+
     init: true
