@@ -30,6 +30,7 @@ services:
 
       - ./services/kons-count/static:/f.kth.se/counter
       - ./services/namndkompassen:/f.kth.se/namndkompassen
+      - ./services/signature:/f.kth.se/signature
 
       - ./services/arcade:/f.kth.se/arcade
       - ./services/arcade/home/index.html:/f.kth.se/arcade/index.html
