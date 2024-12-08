@@ -67,7 +67,7 @@ Nämndkompassen är en kul liten hemsida där man efter att ha svarat på några
 Notera att ingen kod exekveras lokalt, utom allt jobb sköts av nginx. För att detta ska ske, måste dock nginx ha tillgång till filerna via mount binds definierade i Docker Compose filen.
 
 ### Signature
-En liten hemsida där man kan skapa funktionärssignaturer för mailen. består bara av enkla HTML sidor, men release görs med tags. Notera att den skulle må bra av lite CSS.
+En liten hemsida där man kan skapa funktionärssignaturer för mailen. Består bara av enkla HTML och javascript sidor, och releasen görs manuellt. Notera att den skulle må bra av lite CSS.
 
 Notera att ingen kod exekveras lokalt, utom allt jobb sköts av nginx. För att detta ska ske, måste dock nginx ha tillgång till filerna via mount binds definierade i Docker Compose filen.
 
