@@ -1,7 +1,7 @@
 source ./backup.sh
 cd ..
 
-FILES=( services/cyberfohs/data services/cyberfohs/secretkey.txt )
+FILES=( services/cyberfohs/data services/cyberfohs/secretkey.txt services/cyberfohs/media )
 NAME="cyberfohs"
 
 case $1 in
