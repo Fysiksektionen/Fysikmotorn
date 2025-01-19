@@ -54,7 +54,7 @@ Båda installeras samtidigt med nedladdningsskriptet för Arcade.
 ## Misc
 Det är inte ett projekt, utom en samling filer som ska finnas tillgängliga ändå. 
 
-Just nu innehåller det en fil som behövde finnas tillgänglig för KTH:s autentisering tjänst. Det är oklart om den fortfarande behöver vara tillgänglig, men får vara det tills vidare (men ta gärna bort typ 2026). Det är även ett bra exempel om hur enskilda filer kan finnas tillgängliga på servern. Notera att den är tillagd under volumes i Docker Compose-filen.
+Just nu innehåller det en fil som behövde finnas tillgänglig för KTH:s autentiseringtjänst. Det är oklart om den fortfarande behöver vara tillgänglig, men får vara det tills vidare (men ta gärna bort typ 2026). Det är även ett bra exempel om hur enskilda filer kan finnas tillgängliga på servern. Notera att den är tillagd under volumes i Docker Compose-filen.
 
 ## Cyberföhs
 Cyberföhs-appen är en app som används under cyberföhsning under mottagningen. Appens front byggs för tillfället inte på GitHub, men backenden gör det!
