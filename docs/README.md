@@ -5,13 +5,6 @@ Tillgång till servern är ett privilegium som främst ges till sektionens Webma
 
 Det här dokumentet är en kort överblick, guide och beskrivning av den nya Fysikmotorn. Använd för att få en bild, men sedan behövs nog både Stack Overflow och experiment för att förstå detta hopkok.
 
-## Motivering
-När Fysikmotorn först införskaffades, lades olika projekt och kodsnuttar dit på de sätt som var mest naturliga i stunden. Det här fungerar till viss grad, men när projekt blir gamla, personerna som skrev dem lämnat, och någonting går sönder, kan det vara ett massivt arbete att få upp det igen. Vissa försök gjordes att förbättra situationen, och bland annat blev Dockeriserade projekt standard. Mycket gammalt var dock kvar, och saker hängde inte riktigt ihop.
-
-Därav det här projektet. Det här repot innehåller allt som behövs för den nya Fysikmotorn. Alla projekt körs i Docker containers, alla filer och containrar byggs på Github, och både nedladdning av projekt och backups är mer eller mindre automatiserat! Det har varit ett rejält arbete att få ihop detta, men Webmaster 2024, ansåg det vara dags för en renovering.
-
-För att det här projektet ska fungera, att saker inte ska gå tillbaka till kaos, krävs det att ni tar hand om det. Om ni lägger till ett projekt, uppdaterar något, eller på annat sätt ändrar, var god och uppdatera allt. Om små saker slutar fungera blir det en pina för de som kommer efter senare, och då slutar det uppehållas. Det betyder dock inte att ändringar är dåliga, saker får gärna ändras på så länge man har förståelse för hur projektet hänger ihop. Även de delar som backup processen, och nerladdning har definitivt förbättringspotential!
-
 ## Struktur
 Servern är strukturerad runt en Docker Compose fil. Denna innehåller information för Docker om hur man kör alla de olika projekten och hur de ska sättas ihop. I och med att det är just Docker, betyder det också att all kod körs på samma sätt oavsett dator.
 
@@ -22,3 +15,10 @@ I Docker körs alla projekten, men också en nginx server. Denna ansvarar för a
 Likt hur Docker containrarna byggs med Github Actions, byggs även static files till många projekt med Github Actions. Dessa blir en release som sedan kan laddas ner med hjälp av nerladdnings skripten i "scripts" mappen. Underhåll dessa! Det gör att man inte måste undra vilken version av vardera paket som används för att bygga ett projekt.
 
 Tillsammans gör detta att alla projekt hanteras på väldigt liknande sätt, och att uppstart, ändringar och flyttar knappt skiljer sig mellan projekt. Förhoppningen är att det underlättar Webmasterns arbetsbörda, och gör det lättare att bevara gamla projekt.
+
+## Motivering
+När Fysikmotorn först införskaffades, lades olika projekt och kodsnuttar dit på de sätt som var mest naturliga i stunden. Det här fungerar till viss grad, men när projekt blir gamla, personerna som skrev dem lämnat, och någonting går sönder, kan det vara ett massivt arbete att få upp det igen. Vissa försök gjordes att förbättra situationen, och bland annat blev Dockeriserade projekt standard. Mycket gammalt var dock kvar, och saker hängde inte riktigt ihop.
+
+Därav det här projektet. Det här repot innehåller allt som behövs för den nya Fysikmotorn. Alla projekt körs i Docker containers, alla filer och containrar byggs på Github, och både nedladdning av projekt och backups är mer eller mindre automatiserat! Det har varit ett rejält arbete att få ihop detta, men Webmaster 2024, ansåg det vara dags för en renovering.
+
+För att det här projektet ska fungera, att saker inte ska gå tillbaka till kaos, krävs det att ni tar hand om det. Om ni lägger till ett projekt, uppdaterar något, eller på annat sätt ändrar, var god och uppdatera allt. Om små saker slutar fungera blir det en pina för de som kommer efter senare, och då slutar det uppehållas. Det betyder dock inte att ändringar är dåliga, saker får gärna ändras på så länge man har förståelse för hur projektet hänger ihop. Även de delar som backup processen, och nerladdning har definitivt förbättringspotential!
