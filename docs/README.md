@@ -12,7 +12,7 @@ För att bygga dessa Dockercontainrar används GitHub Actions i varje projekts G
 
 I Docker körs alla projekten, men också en nginx-server. Denna ansvarar för att ta emot all datatrafik som servern får och skicka vidare den till rätt projekt. DESSUTOM levererar den filer. Alla filer den kan se (titta i [Docker Compose-filen](../compose.yaml), under `nginx: [...] volumes:`), kan nås genom att gå in på `https://domän.se/väg/till/filen`, och nginx ser till att leverera den! De små hemsideprojekten behöver till exempel ingen kod som körs på servern utom bara att HTML- och Javascriptfilerna levereras vilket nginx tar hand om. Om du inte är bekant med detta, sök gärna upp om "static files". Notera också att nginx här är konfigurerad att allt som den inte vet var det ska skickas vidare till Wordpress.
 
-Likt hur Dockercontainrarna byggs med GitHub Actions byggs även static files till många projekt med GitHub Actions. Dessa blir en release som sedan kan laddas ner med hjälp av nerladdningsskripten i `/scripts/`. Underhåll dessa! Det gör att man inte måste undra vilken version av vardera paket som används för att bygga ett projekt.
+Likt hur Dockercontainrarna byggs med GitHub Actions byggs även static files till många projekt med GitHub Actions. Dessa blir en release som sedan kan laddas ner med hjälp av nerladdningsskripten i [`/scripts/`](../scripts/). Underhåll dessa! Det gör att man inte måste undra vilken version av vardera paket som används för att bygga ett projekt.
 
 Tillsammans gör detta att alla projekt hanteras på väldigt liknande sätt, och att uppstart, ändringar och flyttar knappt skiljer sig mellan projekt. Förhoppningen är att det underlättar Webmasterns arbetsbörda och gör det lättare att bevara gamla projekt.
 
