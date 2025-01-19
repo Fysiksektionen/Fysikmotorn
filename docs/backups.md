@@ -1,4 +1,4 @@
-## Backups
+# Backups
 För att misstag ska kunna rättas till, och att saker inte ska försvinna, har servern även utrustats med backupskripts! Dessa förlitar sig på programmet `rclone` för att ladda upp projektens data (men inte hela projektet i och med att de finns på GitHub). Det kan sedan laddas ner igen lätt.
 
 Dessa scripts är anpassade efter varje projekt, och måste anpassas för varje nytt.
