@@ -1,0 +1,64 @@
+# Projekt
+De projekt som just nu finns på servern är:
+
+## nginx
+Detta är den webbserver som bestämmer exakt vad som ska ske med serverns datatrafik. I nginx.conf filen konfigureras detta, men en överblick är: 
+- Om en domän står nämnd där, skickas trafiken vidare som likt specificerat.
+- Annars, kollar den om filen som sökvägen motsvarar finns, då skickas den filen dit! (Till exempel att https://f.kth.se/ett/exempel.html gör att nginx svarar med filen under /f.kth.se/ett/exempel.html i Docker containern).
+- I sista fall, skickas det vidare till Wordpress motsvarande domänen.
+
+Notera att om du vill att vissa filer ska finnas tillgängliga, till exempel en index.html fil, är det bara att lägga till den under en mapp i services, och skapa en mount bind i Compose filen (under volumes vid nginx). Det finns redan många exempel där att utgå ifrån.
+
+Det kan vara bra att läsa på lite grann kring hur nginx fungerar.
+
+## Certbot
+Vi använder Certbot för att få SSL certifikat (krävs för https). Den fungerar genom att skapa viss filer under ".wellknown/acme-challenge" directory som nginx servar.
+
+För att förnya certifikat som är nära att gå ut (inom 30 dagar) används "docker compose run --rm certbot renew" som återskapar dessa. Eftersom denna inte försöker förnya innan det behövs kan de köras hur ofta som helst.
+
+För att skapa ny certifikat för nya domäner använder man istället kommandot "docker compose run --rmc certbot certonly --webroot --webroot-path /var/www/certbot/ -d fysiksektionen.se -d www.fysiksektionen.se" (där fysiksektionen kan bytas ut med de olika domänerna). Notera att dessa domäner måste vara konfigurerade i nginx (med ".well-known") likt de övriga. Eftersom denna service bara tillåter ett visst antal nya certifikat per domän bör man alltid pröva med "--dry-run" flaggan först för att försäkra sig om att det funkar.
+
+OBS! Certifikaten håller i 90 dagar från att de skapas. Om de går ut kommer en varning till alla som försöker gå in på hemsidan.
+
+## Wordpresshemsidor
+Sektionen underhåller vid skrivande tillfälle 3 stycken Wordpress sidor. Dessa används för att enkelt kommunicera med omvärlden, och innehållshanteringen av dessa är utspridd på sektionen, där f.kth.se hittills faller på Webmaster.
+
+Sidornas Wordpress version behöver uppdateras ibland, så gör gärna det! Det sker genom att först uppdatera via admin konsolen, och sedan ändra versionen i den centrala Docker Compose filen. Kom ihåg att ta en backup innan!
+
+Notera att det inte finns ett Github repo för dessa, utom all information är i backups:en av historiska skäl.
+
+## Kons Count
+Kons Count är en hemsida som är till för att räkna antalet person i konsulatet under pubar.
+
+Den har två delar, en frontend och backend. Frontend:en är ett React projekt och byggs på Github, så att filerna sedan kan levereras med hjälp av nginx. För att underlänkar (som counter/admin) ska fungera, behövs också att nginx är konfigurerad att skicka all trafik som börjar med counter till dess index.html sida.
+
+Backend:en är en liten server i en Docker container som också byggs på Github. Notera att servern har en konfigurationsfil (.env) som inte är på Github, och en autentiseringsfil (service_account_auth_file.json) som kommer från Google.
+
+## Nämndkompassen
+Nämndkompassen är en kul liten hemsida där man efter att ha svarat på några frågor, får veta vilken nämnd man borde gå med i. Detta projekt är enkla html sidor, och en release görs därför manuellt och laddas ner med nedladdningsskriptet. 
+
+Notera att ingen kod exekveras lokalt, utom allt jobb sköts av nginx. För att detta ska ske, måste dock nginx ha tillgång till filerna via mount binds definierade i Docker Compose filen.
+
+## Signature
+En liten hemsida där man kan skapa funktionärssignaturer för mailen. Består bara av enkla HTML och javascript sidor, och releasen görs manuellt. Notera att den skulle må bra av lite CSS.
+
+Notera att ingen kod exekveras lokalt, utom allt jobb sköts av nginx. För att detta ska ske, måste dock nginx ha tillgång till filerna via mount binds definierade i Docker Compose filen.
+
+## Arcade
+Arcade är en samling spel som har gjorts på sektionen med åren. Notera att vår installation här, har två delar.
+
+Det finns en homepage som är skriven i React och byggs på Github, och sedan finns det några spel som är skrivna i html och Javascript och release:as manuellt. Ingen av dessa kräver att kod körs lokalt, utan behöver bara att filerna levereras, vilket sköts av nginx.
+
+Båda installeras samtidigt med nedladdningsskriptet för Arcade.
+
+## Misc
+Det är inte ett projekt, utom en samling filer som ska finnas tillgängliga ändå. 
+
+Just nu innehåller det en fil som behövde finnas tillgänglig för KTH:s autentisering tjänst. Det är oklart om den fortfarande behöver vara tillgänglig, men får vara det tills vidare (men ta gärna bort typ 2026). Det är även ett bra exempel om hur enskilda filer kan finnas tillgängliga på servern. Notera att den är tillagd under volumes i Docker Compose filen.
+
+## Cyberföhs
+Cyberföhs-appen är en app som används under cyberföhsning under mottagningen. Appens front byggs för tillfället inte på github, men backenden gör det!
+
+Notera att den behöver en databas (som man kan skapa med ./init.sh kommandod om man har en terminal i containern (docker exec -it cyberfohs bash)), samt att den behöver static files (som genereras med ./manage.py collectstatic också inne i containern).
+
+OBS! Det här projektet brukar skötas av en grupp varje år, så de har förhoppningsvis lite koll!
