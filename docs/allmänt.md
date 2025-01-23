@@ -36,6 +36,11 @@ Det finns oftast ingen anledning att ta bort en person från ett projekt de en g
 
 Om användaren är Webmaster ska de även läggas till i `sudo`-gruppen vilket ger dem tillgång till `sudo` (super user do).
 
+## Filbehörigheter
+För att filer i en viss delad mapp ska gå att ändra för alla användare i en viss grupp är det viktigt att `umask` är 002, att stickybit är satt, och att mappen har motsvarande grupp som sin.
+
+`umask` verkar vara 002 på Ubuntu som standard och skriptet [share_dir.sh](../scripts/share_dir.sh) kan användas för resterande!
+
 ## Motivering
 När Fysikmotorn först införskaffades lades olika projekt och kodsnuttar dit på de sätt som var mest naturliga i stunden. Det här fungerar till viss grad, men när projekt blir gamla, personerna som skrev dem lämnat, och någonting går sönder kan det vara ett massivt arbete att få upp det igen. Vissa försök gjordes att förbättra situationen och bland annat blev Dockeriserade projekt standard. Mycket gammalt var dock kvar och saker hängde inte riktigt ihop.
 
