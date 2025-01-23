@@ -23,6 +23,15 @@ Var försiktig med dessa filer och generellt kring filer som innehåller autenti
 
 Om nya hemliga filer tillkommer, till exempel Swishkoder, se till att backup- och protect-skriptet uppdateras för att reflektera detta.
 
+## Användare
+Användare på servern är personliga och namngivna efter KTH-id:n. Ett konto skapas med hjälp av `adduser`-kommandot. Ägaren får tillgång till deras konto genom att deras publika SSH-nyckel läggs till under `~/.ssh/authorized_keys`-mappen.
+
+Det finns inget helt standardiserat sätt att ge folk tillgång till ett visst projekt. Om ett projekt ska ha en delad mapp kan man använda [share_dir-skriptet](../scripts/share_dir.sh) för att dela en folder med en grupp.
+
+Det finns oftast ingen anledning att ta bort en person från ett projekt de en gång haft tillgång till, utom de kan oftast fortsätta ha tillgång (med undantag för viktiga personuppgifter).
+
+Om användaren är Webmaster ska de även läggas till i `sudo`-gruppen vilket ger dem tillgång till `sudo` (super user do).
+
 ## Motivering
 När Fysikmotorn först införskaffades lades olika projekt och kodsnuttar dit på de sätt som var mest naturliga i stunden. Det här fungerar till viss grad, men när projekt blir gamla, personerna som skrev dem lämnat, och någonting går sönder kan det vara ett massivt arbete att få upp det igen. Vissa försök gjordes att förbättra situationen och bland annat blev Dockeriserade projekt standard. Mycket gammalt var dock kvar och saker hängde inte riktigt ihop.
 
