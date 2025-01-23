@@ -10,6 +10,10 @@ Likt hur Dockercontainrarna byggs med GitHub Actions byggs även static files ti
 
 Tillsammans gör detta att alla projekt hanteras på väldigt liknande sätt, och att uppstart, ändringar och flyttar knappt skiljer sig mellan projekt. Förhoppningen är att det underlättar Webmasterns arbetsbörda och gör det lättare att bevara gamla projekt.
 
+Filstrukturen på servern är för nuvarande:
+- `/fysikmotorn`: Innehåller detta repository.
+- `/fysikmotorn/services`: Innehåller alla projekten.
+
 ## Säkerhet
 Det finns vissa filer på servern som inte bör kunna ses av andra processer eller användare eftersom de är känsliga. I [protect-skriptet](../scripts/protect.sh), samt i backup-skripten sköts att dessa inte kan ses av övriga användare, men de måste uppdateras om fler tillkommer.
 
