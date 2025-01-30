@@ -33,3 +33,10 @@ OBS! Det krävs lite extra lagring för att genomföra en backup, 2GB är defini
 OBS! För att underlätta felsökande efter stora ändringar, laddas även `.env`, `nginx.conf`, och Docker Compose-filen upp. Kolla i dessa ifall något gått sönder och du tror att de har omkonfigurerats (de laddas dock inte ner i vanliga fall eftersom de påverkar mycket annat också).
 
 OBS! Notera att backupen inte följer symlinks om inte det är själva argumentet.
+
+## Nedladdningsskript
+För att ladda ner projekten finns det nedladdningsskript i [scripts](../scripts/)-mappen. Dessa är anpassade efter varje projekt, och för ett nytt projekt bör man kopiera och anpassa detta.
+
+De kräver att det finns en Github release för projektet som antingen innehåller alla byggda filer (om så är relevant), eller källkoden (om bara den krävs). Kolla på de redan existerande projekten efter exempel.
+
+OBS! Skripten måste köras med scripts som working directory, och det krävs oftast sudo.
