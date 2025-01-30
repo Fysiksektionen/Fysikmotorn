@@ -10,7 +10,7 @@ Det fungerar eftersom all kod som ska köras kontinuerligt körs i Dockercontain
 docker compose down
 ```
 
-# Backups
+## Backups
 För att misstag ska kunna rättas till, och att saker inte ska försvinna, har servern även utrustats med backupskripts! Dessa förlitar sig på programmet `rclone` för att ladda upp projektens data (men inte hela projektet i och med att de finns på GitHub). Det kan sedan laddas ner igen lätt.
 
 För att köra backupskript måste [`/scripts/`](../scripts/) sättas som working directory och körningen måste oftas ske som root user.
