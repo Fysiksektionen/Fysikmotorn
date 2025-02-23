@@ -191,3 +191,30 @@ services:
       - ./services/cyberfohs/secretkey.txt:/src/secretkey.txt
 
     init: true
+
+  ## bittan_test
+  bittan_test_server:
+    container_name: bittan_test_server
+    image: ghcr.io/fysiksektionen/bittan:${BITTAN_TEST_VERSION}
+    volumes:
+      - ./services/bittan_test:/bittan
+    depends_on:
+      bittan_test_postgres:
+        condition: service_healthy
+
+  bittan_test_postgres:
+    container_name: bittan_test_postgres
+    image: postgres
+    volumes:
+      - ./services/bittan_test/postgres_data:/var/lib/postgresql/data
+    environment: # TODO put this in a file instead?
+      POSTGRES_DB: bittan_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
