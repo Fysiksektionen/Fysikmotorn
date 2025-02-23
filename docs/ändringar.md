@@ -38,3 +38,8 @@ Om du ska lägga till ett nytt projekt vill du:
 
 ## Ta bort
 Se till att allt från den generella checklistan stämmer. Se även till att helt ta bort mappar och konton kopplade till projekt som inte längre finns. Annars blir de förvirrande år senare.
+
+## Ny användare
+Om en person ska få tillgång till Fysikmotorn:
+- Skapa ett konto
+- Om de är Webmaster, lägg till dem i sudogruppen.
