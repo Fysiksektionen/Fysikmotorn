@@ -7,15 +7,15 @@ Stegen:
 - Du behöver en installation av Linux, för att de flesta av skripten ska fungera. Det går säkert med Windows också, men kan kräva en del pillande.
 - Om du migrerar till en faktisk server:
     - Skapa användare, en för dig med root access, och även för andra som ska ha. 
-- Installera och konfigurera [programmen som används](allmänt#program-på-servern).
+- Installera och konfigurera [programmen som används](allmänt.md#program-på-servern).
 - Klona Fysikmotorns repo som root till `/fysikmotorn` eller annan bra plats.
-- Kör alla nedladdningsskripten för att ladda ner static files (se [här](användning#nedladdningsskript))
-- Kör alla backupskripts för att få alla data (se [här](användning#backups)). Se till att backups är nya.
+- Kör alla nedladdningsskripten för att ladda ner static files (se [här](användning.md#nedladdningsskript))
+- Kör alla backupskripts för att få alla data (se [här](användning.md#backups)). Se till att backups är nya.
 - Om du kör lokalt, eller inte vill flytta domänerna till nya servern, länka om domäner genom att till exempel lägga till följande i `/etc/hosts`:
 ```
 127.0.0.1       f.kth.se
 127.0.0.1       fysikalen.se
 127.0.0.1       ffusion.se
 ```
-- [Starta upp servern](användning#att-starta)!
+- [Starta upp servern](användning.md#att-starta)!
 - Klart! Testa allt och förbättra guiden med dina nya insikter.
