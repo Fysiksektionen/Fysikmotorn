@@ -196,8 +196,10 @@ services:
   bittan_test_server:
     container_name: bittan_test_server
     image: ghcr.io/fysiksektionen/bittan-backend:${BITTAN_TEST_VERSION}
-    volumes:
-      - ./services/bittan_test:/bittan
+    environment:
+      BITTAN_BACKEND_URL: "https://google.com"
+    ports:
+      - '8000:8000'
     depends_on:
       bittan_test_postgres:
         condition: service_healthy
