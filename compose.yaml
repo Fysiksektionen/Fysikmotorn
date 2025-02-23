@@ -195,7 +195,7 @@ services:
   ## bittan_test
   bittan_test_server:
     container_name: bittan_test_server
-    image: ghcr.io/fysiksektionen/bittan:${BITTAN_TEST_VERSION}
+    image: ghcr.io/fysiksektionen/bittan-backend:${BITTAN_TEST_VERSION}
     volumes:
       - ./services/bittan_test:/bittan
     depends_on:
