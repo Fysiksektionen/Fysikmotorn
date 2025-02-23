@@ -14,3 +14,24 @@ Om du ska göra några ändringar på servern är det jättebra att kolla att du
 - Fysikmotorns dokumentation som du nu läser!
 
 Se till att dessa alltid är uppdaterade, FRAMFÖRALLT innan nästa Webmaster börjar. Det må vara en del saker att ha koll på, men är mycket bättre än om saker sprids vilt.
+
+## Lägga till ett nytt projekt
+Om du ska lägga till ett nytt projekt vill du:
+- Kolla att alla relevanta saker byggs på Github och publiceras som en release, eller Docker Container
+- Skapa en användare för projektet
+- Skapa en symlink till relevant mapp från services mappen
+- Lägg till version under .env-filen
+- Om static files genereras:
+    - Skapa ett nedladdningsskript som laddar ner dessa
+    - Lägga till relevant mapp under volumes till nginx
+- Om en Docker container används
+    - Uppdatera Docker Compose-filen med containern
+    - Konfigurera allt kopplat till den i Docker Compose-filen
+    - Lägga till regler för när nginx ska skicka vidare till containern i nginx.conf
+- Om data sparas
+    - Skapa ett backupskript
+    - Om datan är känslig, se till att den skyddas i både backupskript och protect-skriptet.
+- Starta om Docker Compose med `docker compose down` och `docker compose up`
+- Testa att allt fungerar, annars gå tillbaka.
+- Uppdatera Fysikmotorns dokumentation
+- Uppdatera repot för Fysikmotorn med allt detta!
