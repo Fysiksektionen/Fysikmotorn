@@ -204,7 +204,7 @@ services:
       bittan_test_postgres:
         condition: service_healthy
 
-  bittan_test_postgres:
+  bittan_test_postgres: # TODO bittan tror att servicen ska heta `postgres` så jag måste ändra i settings.py 'HOST'
     container_name: bittan_test_postgres
     image: postgres
     volumes:
