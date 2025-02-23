@@ -35,3 +35,6 @@ Om du ska lägga till ett nytt projekt vill du:
 - Testa att allt fungerar, annars gå tillbaka.
 - Uppdatera Fysikmotorns dokumentation
 - Uppdatera repot för Fysikmotorn med allt detta!
+
+## Ta bort
+Se till att allt från den generella checklistan stämmer. Se även till att helt ta bort mappar och konton kopplade till projekt som inte längre finns. Annars blir de förvirrande år senare.
