@@ -41,6 +41,48 @@ För att filer i en viss delad mapp ska gå att ändra för alla användare i en
 
 `umask` verkar vara 002 på Ubuntu som standard och skriptet [share_dir.sh](../scripts/share_dir.sh) kan användas för resterande!
 
+## Program på servern
+OBS! På Ubuntu verkar snap inte fungera på grund av att den inte tillåter root enkelt, och apt-get har för gamla versioner. På vardera programs sida finns dock lämpliga installations instruktioner.
+
+### Docker
+Docker är ett program för att isolera program och ge en konsekvent miljö för dem att exekveras i. Docker är också betydligt mer resurs effektiv än en virtual machine.
+
+Som nämnts används Docker för att köra de flesta program på servern. Det behöver alltså vara nedladdat på servern.
+
+Om du inte redan är bekant med Docker rekommenderar jag att söka på om det, samt Docker Compose!
+
+### rclone
+rclone är ett verktyg för att kopiera till och från olika fjärrfilsystem.
+
+På Fysikmotorn används det för att sköta backups, då dessa blir uppladdade på sektionens Google Drive.
+
+Det kräver ett projekt, vilket ägs av "Fysikmotorn" kontot (lösenord finns i Webmasters nyckelring). Själva filerna läggs in i den delade enheten "Backup Fysikmotorn", som Webmaster också har tillgång till.
+
+För att rclone ska fungera på en enhet måste de konfigureras, följ då guiderna:
+https://rclone.org/drive/
+https://rclone.org/drive/#making-your-own-client-id
+och lägg till den delade driven ("Team Drive") som heter "Backup Fysikmotorn" under namnet "Drive".
+
+Kontot och projektet finns som sagt redan, men koder kan behövas för en lokal installation.
+
+### Tar
+Tar är ett program som är förinstallerat på de flesta Linux datorer. Med det kan man skapa arkiv av filer, vilket används av både nedladdningsskript och backupskript vid ned och uppladdning.
+
+### Git
+För att projektet ska fungera behövs Git, både för att ladda ner det :D, men också för att 
+det används av Githubs command line interface.
+
+Notera att det används en Deploy Key för att ge servern tillgång till repot.
+
+Om du gör ändringar på servern, så uppdatera Fysikmotor repot också!
+
+Notera att .gitignore används för att inte fylla repot med de olika projekten eftersom dessa finns och uppdateras på separata Github sidor.
+
+### Github
+Github är tjänsten vi använder för att hosta våra Gitrepon. Där i används bland annat Github Actions för att bygga projekten som behöver byggas. Fortsätt med detta!
+
+Dessutom används Github CLI för att kunna ladda ner releases enkelt. De används i nedladdningsskripten. För att konfigurera detta, kör `gh auth login`. Vi använder Github-kontot kopplat till fysikmotorn@f.kth.se för att kunna logga in i Github CLI. Om du kör lokalt går det bra att använda ditt privata Github-konto istället, så länge det är med i Github-organisationen Fysiksektionen.
+
 ## Motivering
 När Fysikmotorn först införskaffades lades olika projekt och kodsnuttar dit på de sätt som var mest naturliga i stunden. Det här fungerar till viss grad, men när projekt blir gamla, personerna som skrev dem lämnat, och någonting går sönder kan det vara ett massivt arbete att få upp det igen. Vissa försök gjordes att förbättra situationen och bland annat blev Dockeriserade projekt standard. Mycket gammalt var dock kvar och saker hängde inte riktigt ihop.
 
