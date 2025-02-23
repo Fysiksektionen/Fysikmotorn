@@ -89,3 +89,6 @@ När Fysikmotorn först införskaffades lades olika projekt och kodsnuttar dit p
 Därav det här projektet. Det här repot innehåller allt som behövs för den nya Fysikmotorn. Alla projekt körs i Dockercontainers, alla filer och containrar byggs på GitHub, och både nedladdning av projekt och backups är mer eller mindre automatiserat! Det har varit ett rejält arbete att få ihop detta, men Webmaster 2024 ansåg det vara dags för en renovering.
 
 För att det här projektet ska fungera och att saker inte ska gå tillbaka till kaos krävs det att ni tar hand om det. Om ni lägger till ett projekt, uppdaterar något, eller på annat sätt ändrar, var god och uppdatera allt. Om små saker slutar fungera blir det en pina för de som kommer efter senare och då slutar det uppehållas. Det betyder dock inte att ändringar är dåliga; saker får gärna ändras på så länge man har förståelse för hur projektet hänger ihop. Även delar som backupprocessen och nerladdning har definitivt förbättringspotential!
+
+## Kontakt
+Om du skulle behöva assistans med något kan man alltid börja med att fråga Webmaster innan dig. Om det däremot skulle uppstå ett problem eller en fråga som handlar om själva serverarkitekturen går det alltid bra att kontakta Webmaster 2024 vars privata mejl finns i Webmasters testamente.
