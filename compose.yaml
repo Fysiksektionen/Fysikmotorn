@@ -198,6 +198,8 @@ services:
     container_name: bittan_test_server
     image: ghcr.io/fysiksektionen/bittan-backend:${BITTAN_TEST_VERSION}
     env_file: ./services/bittan_test/bittan_test_server.env
+    volumes:
+      - ./services/bittan_test/static:/bittan/static
     environment:
       BITTAN_BACKEND_URL: "https://f.kth.se/bittan-test"
       ALLOWED_HOSTS: '["f.kth.se"]'
