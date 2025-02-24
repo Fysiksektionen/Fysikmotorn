@@ -205,7 +205,7 @@ services:
       DATABASE_NAME: bittan_test_db
       DATABASE_USER: postgres
       DATABASE_PORT: 5432
-      DEBUG: false
+      DEBUG: "False"
     ports:
       - '8000:8000'
     depends_on:
