@@ -45,6 +45,8 @@ services:
       - ./services/misc/logo.png:/f.kth.se/logo.png
       - ./services/misc/robots.txt:/f.kth.se/robots.txt
 
+      - ./services/bittan_test/static:/f.kth.se/bittan-test/static
+
   # Provides SSL certificates
   certbot:
     container_name: certbot
