@@ -46,6 +46,7 @@ services:
       - ./services/misc/robots.txt:/f.kth.se/robots.txt
 
       - ./services/bittan_test/static:/f.kth.se/bittan-test/static
+      - ./services/bittan_test_frontend:/f.kth.se/biljett-test
 
   # Provides SSL certificates
   certbot:
