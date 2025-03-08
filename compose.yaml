@@ -203,7 +203,7 @@ services:
     env_file: ./services/bittan_test/bittan_test_server.env
     volumes:
       - ./services/bittan_test/static:/bittan/static
-      - ./services/bittan_test/certificates:/bittan/certificates
+      - ./services/bittan_test/swish_certificates:/bittan/certificates
     environment:
       BITTAN_BACKEND_URL: "https://f.kth.se/bittan-test"
       ALLOWED_HOSTS: '["f.kth.se"]'
@@ -213,7 +213,8 @@ services:
       DATABASE_PORT: 5432
       SWISH_PEM_FILE_PATH: ./certificates/myCertificate.pem
       SWISH_KEY_FILE_PATH: ./certificates/PrivateKey.key
-      DEBUG: "False"
+      PYTHONUNBUFFERED: 1
+      DEBUG: "True"
     ports:
       - '8000:8000'
     depends_on:
