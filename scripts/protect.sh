@@ -24,4 +24,4 @@ TO_PROTECT=(
 	"services/bittan_test/swish_certificates"
 );
 
-chmod o-rwx $TO_PROTECT
+chmod o-rwx "${TO_PROTECT[@]}"
