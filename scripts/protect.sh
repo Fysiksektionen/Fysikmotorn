@@ -17,6 +17,11 @@ TO_PROTECT=(
 
 	"services/cyberfohs/secretkey.txt"
 	"services/cyberfohs/data"
+
+	"services/bittan_test/bittan_test_postgres.env"
+	"services/bittan_test/bittan_test_server.env"
+	"services/bittan_test/postgres_data"
+	"services/bittan_test/swish_certificates"
 );
 
 chmod o-rwx $TO_PROTECT
