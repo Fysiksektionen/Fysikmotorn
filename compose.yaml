@@ -204,6 +204,7 @@ services:
     volumes:
       - ./services/bittan_test/static:/bittan/static
       - ./services/bittan_test/swish_certificates:/bittan/certificates
+      - ./services/bittan_test/gmail_creds:/bittan/gmail_creds
     environment:
       BITTAN_BACKEND_URL: "https://f.kth.se/bittan-test"
       ALLOWED_HOSTS: '["f.kth.se"]'
