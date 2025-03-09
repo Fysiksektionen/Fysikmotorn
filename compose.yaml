@@ -15,6 +15,7 @@ services:
       - sangbok
       - kons-count
       - cyberfohs
+      - bittan_test_server
     volumes:
       - ./services/nginx/nginx.conf:/etc/nginx/nginx.conf
 
@@ -43,6 +44,9 @@ services:
       - ./services/misc/f.png:/f.kth.se/f.png
       - ./services/misc/logo.png:/f.kth.se/logo.png
       - ./services/misc/robots.txt:/f.kth.se/robots.txt
+
+      - ./services/bittan_test/static:/f.kth.se/bittan-test/static
+      - ./services/bittan_test_frontend:/f.kth.se/biljett-test
 
   # Provides SSL certificates
   certbot:
@@ -191,3 +195,44 @@ services:
       - ./services/cyberfohs/secretkey.txt:/src/secretkey.txt
 
     init: true
+
+  ## bittan_test
+  bittan_test_server:
+    container_name: bittan_test_server
+    image: ghcr.io/fysiksektionen/bittan-backend:${BITTAN_TEST_VERSION}
+    env_file: ./services/bittan_test/bittan_test_server.env
+    volumes:
+      - ./services/bittan_test/static:/bittan/static
+      - ./services/bittan_test/swish_certificates:/bittan/certificates
+    environment:
+      BITTAN_BACKEND_URL: "https://f.kth.se/bittan-test"
+      ALLOWED_HOSTS: '["f.kth.se"]'
+      DATABASE_HOST: bittan_test_postgres
+      DATABASE_NAME: bittan_test_db
+      DATABASE_USER: postgres
+      DATABASE_PORT: 5432
+      SWISH_PEM_FILE_PATH: ./certificates/myCertificate.pem
+      SWISH_KEY_FILE_PATH: ./certificates/PrivateKey.key
+      DEBUG: "False"
+    ports:
+      - '8000:8000'
+    depends_on:
+      bittan_test_postgres:
+        condition: service_healthy
+
+  bittan_test_postgres:
+    container_name: bittan_test_postgres
+    image: postgres
+    volumes:
+      - ./services/bittan_test/postgres_data:/var/lib/postgresql/data
+    env_file: ./services/bittan_test/bittan_test_postgres.env
+    environment:
+      POSTGRES_DB: bittan_test_db
+      POSTGRES_USER: postgres
+    ports:
+      - '5432:5432'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
