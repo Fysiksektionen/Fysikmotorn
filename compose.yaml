@@ -221,8 +221,6 @@ services:
       SWISH_PAYEE_ALIAS: 1230810689
       SWISH_API_URL: https://staging.getswish.pub.tds.tieto.com/swish-cpcapi
       DEBUG: "False"
-    ports:
-      - '8000:8000'
     depends_on:
       bittan_test_postgres:
         condition: service_healthy
@@ -236,8 +234,6 @@ services:
     environment:
       POSTGRES_DB: bittan_test_db
       POSTGRES_USER: postgres
-    ports:
-      - '5432:5432'
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 1s
