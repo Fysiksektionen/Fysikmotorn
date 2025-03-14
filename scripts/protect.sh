@@ -23,6 +23,12 @@ TO_PROTECT=(
 	"services/bittan_test/postgres_data"
 	"services/bittan_test/swish_certificates"
 	"services/bittan_test/gmail_creds"
+
+	"services/bittan_marke/bittan_marke_postgres.env"
+	"services/bittan_marke/bittan_marke_server.env"
+	"services/bittan_marke/postgres_data"
+	"services/bittan_marke/swish_certificates"
+	"services/bittan_marke/gmail_creds"
 );
 
 chmod o-rwx "${TO_PROTECT[@]}"
