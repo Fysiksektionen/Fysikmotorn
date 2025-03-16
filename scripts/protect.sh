@@ -29,6 +29,7 @@ TO_PROTECT=(
 	"services/bittan_marke/postgres_data"
 	"services/bittan_marke/swish_certificates"
 	"services/bittan_marke/gmail_creds"
+	"services/bittan_marke/logs"
 );
 
 chmod o-rwx "${TO_PROTECT[@]}"

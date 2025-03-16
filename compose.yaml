@@ -249,6 +249,7 @@ services:
       - ./services/bittan_marke/static:/bittan/static
       - ./services/bittan_marke/swish_certificates:/bittan/certificates
       - ./services/bittan_marke/gmail_creds:/bittan/gmail_creds
+      - ./services/bittan_marke/logs:/bittan/logs
     environment:
       BITTAN_BACKEND_URL: "https://f.kth.se/bittan-marke-django"
       ALLOWED_HOSTS: '["f.kth.se"]'
