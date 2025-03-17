@@ -17,6 +17,7 @@ services:
       - cyberfohs
       - bittan_test_server
       - bittan-marke-server
+      - bittan-fysikalen-server
     volumes:
       - ./services/nginx/nginx.conf:/etc/nginx/nginx.conf
 
@@ -51,6 +52,9 @@ services:
 
       - ./services/bittan_marke/static:/f.kth.se/bittan-marke-django/static
       - ./services/bittan_marke_frontend:/f.kth.se/bittan-marke
+
+      - ./services/bittan_fysikalen/static:/f.kth.se/bittan-fysikalen/static
+      - ./services/bittan_fysikalen_frontend:/fysikalen.se/biljetter
 
   # Provides SSL certificates
   certbot:
@@ -274,6 +278,47 @@ services:
     env_file: ./services/bittan_marke/bittan_marke_postgres.env
     environment:
       POSTGRES_DB: bittan_marke_db
+      POSTGRES_USER: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+
+  ## bittan_fysikalen
+  bittan-fysikalen-server:
+    container_name: bittan-fysikalen-server
+    image: ghcr.io/fysiksektionen/bittan-backend:${BITTAN_FYSIKALEN_VERSION}
+    env_file: ./services/bittan_fysikalen/bittan_fysikalen_server.env
+    volumes:
+      - ./services/bittan_fysikalen/static:/bittan/static
+      - ./services/bittan_fysikalen/swish_certificates:/bittan/certificates
+      - ./services/bittan_fysikalen/gmail_creds:/bittan/gmail_creds
+      - ./services/bittan_fysikalen/logs:/bittan/logs
+    environment:
+      BITTAN_BACKEND_URL: "https://f.kth.se/bittan-fysikalen"
+      BITTAN_FRONTEND_URL: "https://fysikalen.se/biljetter"
+      ALLOWED_HOSTS: '["f.kth.se", "bittan-fysikalen-server"]'
+      DATABASE_HOST: bittan-fysikalen-postgres
+      DATABASE_NAME: bittan_fysikalen_db
+      DATABASE_USER: postgres
+      DATABASE_PORT: 5432
+      SWISH_PEM_FILE_PATH: ./certificates/swish_certificate_202503132004.pem
+      SWISH_KEY_FILE_PATH: ./certificates/MySwishKey.key
+      SWISH_API_URL: https://cpc.getswish.net/swish-cpcapi
+      DEBUG: "False"
+    depends_on:
+      bittan-fysikalen-postgres:
+        condition: service_healthy
+
+  bittan-fysikalen-postgres:
+    container_name: bittan-fysikalen-postgres
+    image: postgres
+    volumes:
+      - ./services/bittan_fysikalen/postgres_data:/var/lib/postgresql/data
+    env_file: ./services/bittan_fysikalen/bittan_fysikalen_postgres.env
+    environment:
+      POSTGRES_DB: bittan_fysikalen_db
       POSTGRES_USER: postgres
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
