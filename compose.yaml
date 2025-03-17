@@ -53,7 +53,7 @@ services:
       - ./services/bittan_marke/static:/f.kth.se/bittan-marke-django/static
       - ./services/bittan_marke_frontend:/f.kth.se/bittan-marke
 
-      - ./services/bittan_fysikalen/static:/f.kth.se/bittan-fysikalen/static
+      - ./services/bittan_fysikalen/static:/fysikalen.se/bittan-fysikalen/static
       - ./services/bittan_fysikalen_frontend:/fysikalen.se/biljetter
 
   # Provides SSL certificates
@@ -296,9 +296,9 @@ services:
       - ./services/bittan_fysikalen/gmail_creds:/bittan/gmail_creds
       - ./services/bittan_fysikalen/logs:/bittan/logs
     environment:
-      BITTAN_BACKEND_URL: "https://f.kth.se/bittan-fysikalen"
+      BITTAN_BACKEND_URL: "https://fysikalen.se/bittan-fysikalen"
       BITTAN_FRONTEND_URL: "https://fysikalen.se/biljetter"
-      ALLOWED_HOSTS: '["f.kth.se", "bittan-fysikalen-server"]'
+      ALLOWED_HOSTS: '["fysikalen.se", "bittan-fysikalen-server"]'
       DATABASE_HOST: bittan-fysikalen-postgres
       DATABASE_NAME: bittan_fysikalen_db
       DATABASE_USER: postgres
