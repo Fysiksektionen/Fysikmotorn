@@ -311,7 +311,7 @@ services:
       bittan-fysikalen-postgres:
         condition: service_healthy
 
-  bittan-marke-postgres:
+  bittan-fysikalen-postgres:
     container_name: bittan-fysikalen-postgres
     image: postgres
     volumes:
