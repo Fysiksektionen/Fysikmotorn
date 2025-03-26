@@ -9,8 +9,17 @@ case $1 in
 		upload_backup $NAME ${FILES[@]}
 	;;
 	download|d)
-		download_backup $NAME:$2 ${FILES[@]}
-		chmod -R o-rwx services/cyberfohs/secretkey.txt services/cyberfohs/data
+		read -p "Do you really want to download a backup? This will remove current data. (y/n): " confirmation
+		case $confirmation in
+			y|yes)
+				download_backup $NAME:$2 ${FILES[@]}
+				chmod -R o-rwx services/cyberfohs/secretkey.txt services/cyberfohs/data
+			;;
+			n|no)
+				echo "Aborting."; exit 1;;
+			*)
+				echo "Invalid choice. Aborting."; exit 1;;
+		esac
 	;;
 	*) echo "Did not choose option"; exit 1;;
 esac;
