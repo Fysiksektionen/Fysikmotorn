@@ -3,7 +3,7 @@ Välkommen till Fysikmotorn, Fysiksektionens alldeles egna server! Här är möj
 
 Tillgång till servern är ett privilegium som främst ges till sektionens Webmaster och sedan delas ut till de som kan hjälpa denne i sina uppdrag. Typiskt sett är det Kvackare och F.devare som arbetar på ett aktivt projekt på servern som får varierande tillgång.
 
-Det här dokumentet är en kort överblick, guide och beskrivning av den nya Fysikmotorn. Använd för att få en bild, men sedan behövs nog både Stack Overflow och experiment för att förstå detta hopkok.
+Det här dokumentet är en kort överblick, guide och beskrivning av den nya Fysikmotorn. Använd den för att få en bild, men sedan behövs nog både Stack Overflow och experiment för att förstå detta hopkok.
 
 Dokumentationen är uppdelad i följande filer:
 - [allmänt](/docs/allmänt.md): Allmän info om Fysikmotorn som kan vara bra att ha som kontext.
