@@ -14,6 +14,7 @@ case $1 in
 			y|yes)
 				download_backup $NAME:$2 ${FILES[@]}
 				chmod -R o-rwx services/ffusion.se/mariadb services/ffusion.se/.env
+				chown root:root services/ffusion.se/mariadb services/ffusion.se/.env
 			;;
 			n|no)
 				echo "Aborting."; exit 1;;

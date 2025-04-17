@@ -40,3 +40,4 @@ TO_PROTECT=(
 );
 
 chmod o-rwx "${TO_PROTECT[@]}"
+chown root:root "${TO_PROTECT[@]}"

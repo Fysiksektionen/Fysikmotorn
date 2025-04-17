@@ -14,6 +14,7 @@ case $1 in
 			y|yes)
 				download_backup $NAME:$2 ${FILES[@]}
 				chmod -R o-rwx services/fadderiet/mariadb services/fadderiet/.env
+				chown root:root services/fadderiet/mariadb services/fadderiet/.env
 			;;
 			n|no)
 				echo "Aborting."; exit 1;;

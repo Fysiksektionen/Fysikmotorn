@@ -14,6 +14,7 @@ case $1 in
 			y|yes)
 				download_backup $NAME:$2 ${FILES[@]}
 				chmod -R o-rwx $FILES
+				chown root:root $FILES
 			;;
 			n|no)
 				echo "Aborting."; exit 1;;

@@ -14,6 +14,7 @@ case $1 in
 			y|yes)
 				download_backup $NAME:$2 ${FILES[@]}
 				chmod -R o-rwx services/kons-count/server/service_account_auth_file.json
+				chown root:root services/kons-count/server/service_account_auth_file.json
 			;;
 			n|no)
 				echo "Aborting."; exit 1;;

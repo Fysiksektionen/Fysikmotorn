@@ -14,6 +14,7 @@ case $1 in
 			y|yes)
 				download_backup $NAME:$2 ${FILES[@]}
 				chmod -R o-rwx services/cyberfohs/secretkey.txt services/cyberfohs/data
+				chown root:root services/cyberfohs/secretkey.txt services/cyberfohs/data
 			;;
 			n|no)
 				echo "Aborting."; exit 1;;

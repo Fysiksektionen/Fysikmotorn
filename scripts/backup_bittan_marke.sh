@@ -14,6 +14,7 @@ case $1 in
 			y|yes)
 				download_backup $NAME:$2 ${FILES[@]}
 				chmod -R o-rwx services/bittan_marke/bittan_marke_postgres.env services/bittan_marke/bittan_marke_server.env services/bittan_marke/postgres_data services/bittan_marke/swish_certificates services/bittan_marke/gmail_creds services/bittan_marke/logs
+				chown root:root services/bittan_marke/bittan_marke_postgres.env services/bittan_marke/bittan_marke_server.env services/bittan_marke/postgres_data services/bittan_marke/swish_certificates services/bittan_marke/gmail_creds services/bittan_marke/logs
 			;;
 			n|no)
 				echo "Aborting."; exit 1;;
