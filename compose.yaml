@@ -37,6 +37,8 @@ services:
       - ./services/arcade:/f.kth.se/arcade
       - ./services/arcade/home/index.html:/f.kth.se/arcade/index.html
 
+      - ./services/fnkth.se:/fnkth.se
+
       - ./services/cyberfohs/static:/f.kth.se/cyberfohs/public/staticfiles
       - ./services/cyberfohs/media:/f.kth.se/cyberfohs/public/media
 
