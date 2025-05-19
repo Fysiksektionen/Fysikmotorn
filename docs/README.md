@@ -6,6 +6,7 @@ Tillgång till servern är ett privilegium som främst ges till sektionens Webma
 Det här dokumentet är en kort överblick, guide och beskrivning av den nya Fysikmotorn. Använd den för att få en bild, men sedan behövs nog både Stack Overflow och experiment för att förstå detta hopkok.
 
 Dokumentationen är uppdelad i följande filer:
+- [för-alla](/docs/för-alla.md): **Om du inte är Webmaster är detta den enda dokumentationsfil som du behöver kolla på**. Här finns info för användning av personer som inte är Webmaster.
 - [allmänt](/docs/allmänt.md): Allmän info om Fysikmotorn som kan vara bra att ha som kontext.
 - [projekt](/docs/projekt.md): Överblick samt instruktioner för alla projekt som host:as.
 - [användning](/docs/användning.md): Beskrivning och instruktioner för Fysikmotorns vanligaste funktioner.
