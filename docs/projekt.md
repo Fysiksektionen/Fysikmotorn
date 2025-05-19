@@ -16,7 +16,7 @@ Vi använder Certbot för att få SSL certifikat (krävs för https). Den funger
 
 För att förnya certifikat som är nära att gå ut (inom 30 dagar) används `docker compose run --rm certbot renew` som återskapar dessa. Eftersom denna inte försöker förnya innan det behövs kan de köras hur ofta som helst.
 
-För att skapa ny certifikat för nya domäner använder man istället kommandot `docker compose run --rmc certbot certonly --webroot --webroot-path /var/www/certbot/ -d fysiksektionen.se -d www.fysiksektionen.se` (där fysiksektionen kan bytas ut med de olika domänerna). Notera att dessa domäner måste vara konfigurerade i nginx (med `.well-known`) likt de övriga. Eftersom denna service bara tillåter ett visst antal nya certifikat per domän bör man alltid pröva med `--dry-run`-flaggan först för att försäkra sig om att det funkar.
+För att skapa ny certifikat för nya domäner använder man istället kommandot `docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d fysiksektionen.se -d www.fysiksektionen.se` (där fysiksektionen kan bytas ut med de olika domänerna). Notera att dessa domäner måste vara konfigurerade i nginx (med `.well-known`) likt de övriga. Eftersom denna service bara tillåter ett visst antal nya certifikat per domän bör man alltid pröva med `--dry-run`-flaggan först för att försäkra sig om att det funkar.
 
 OBS! Certifikaten håller i 90 dagar från att de skapas. Om de går ut kommer en varning till alla som försöker gå in på hemsidan.
 
