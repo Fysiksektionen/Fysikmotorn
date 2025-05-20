@@ -288,7 +288,7 @@ services:
   # fnkth.se
   fnkth.se-flask:
     container_name: fnkth.se-flask
-    image: ghcr.io/zl2noob/fn-hemsida-backend:${FNKTHSE_VERSION} # TODO change organisation and repo name to FN's
+    image: ghcr.io/fysiksektionens-naringslivsnamnd/hemsida-backend:${FNKTHSE_VERSION}
     env_file:
       - ./services/fnkth.se-flask/.env
     restart: always
