@@ -17,6 +17,7 @@ services:
       - cyberfohs
       - bittan-marke-server
       - bittan-fysikalen-server
+      - fnkth.se-flask
     volumes:
       - ./services/nginx/nginx.conf:/etc/nginx/nginx.conf
 
@@ -283,3 +284,11 @@ services:
       interval: 1s
       timeout: 5s
       retries: 10
+
+  # fnkth.se
+  fnkth.se-flask:
+    container_name: fnkth.se-flask
+    image: ghcr.io/fysiksektionens-naringslivsnamnd/hemsida-backend:${FNKTHSE_VERSION}
+    env_file:
+      - ./services/fnkth.se-flask/.env
+    restart: always
