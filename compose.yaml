@@ -35,8 +35,9 @@ services:
       - ./services/namndkompassen:/f.kth.se/namndkompassen
       - ./services/signature:/f.kth.se/signature
 
-      - ./services/arcade:/f.kth.se/arcade
-      - ./services/arcade/home/index.html:/f.kth.se/arcade/index.html
+      #- ./services/arcade:/f.kth.se/arcade
+      #- ./services/arcade/home/index.html:/f.kth.se/arcade/index.html
+      - ./services/coming-soon/:/f.kth.se/arcade/0
 
       - ./services/fnkth.se:/fnkth.se
 
