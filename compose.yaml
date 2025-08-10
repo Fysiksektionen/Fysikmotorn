@@ -54,7 +54,7 @@ services:
       - ./services/bittan_marke_frontend:/f.kth.se/bittan-marke
 
       - ./services/bittan_fysikalen/static:/fysikalen.se/bittan-fysikalen/static
-        #- ./services/bittan_fysikalen_frontend:/fysikalen.se/biljetter
+      - ./services/bittan_fysikalen_frontend:/fysikalen.se/biljetter
 
   # Provides SSL certificates
   certbot:
