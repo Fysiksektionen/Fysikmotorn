@@ -1,31 +1,26 @@
-#!/bin/bash
-# Usage: source gather_envs.sh
-
+#!/usr/bin/env bash
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
   echo "ERROR: You must source this script: 'source $0'"
   exit 1
 fi
 
 cd ..
-ENV_FILE_LIST="environments.txt"
+MAPPING_FILE="environments.conf"
 
-if [[ ! -f "$ENV_FILE_LIST" ]]; then
-  echo "ERROR: $ENV_FILE_LIST not found"
-  return 1
-fi
+while IFS='=' read -r var_name env_file; do
+    # skip empty lines and comments
+    [[ -z "$var_name" || "$var_name" =~ ^# ]] && continue
 
-while IFS= read -r file || [[ -n "$file" ]]; do
-  # skip empty lines and lines starting with #
-  [[ -z "$file" || "$file" =~ ^# ]] && continue
-
-  if [[ ! -f "$file" ]]; then
-    echo "WARNING: File '$file' not found, skipping"
-    continue
-  fi
-
-  # source the file to export variables
-  # use 'set -a' to automatically export all variables
-  set -a
-  source "$file"
-  set +a
-done < "$ENV_FILE_LIST"
+    # read env_file safely, extract only the exact variable
+    if [[ -f "$env_file" ]]; then
+        value=$(grep -E "^${var_name}=" "$env_file" | head -n1 | cut -d= -f2-)
+        if [[ -n "$value" ]]; then
+            export "$var_name=$value"
+            echo "Setting $var_name to $value"
+        else
+            echo "Warning: $var_name not found in $env_file" >&2
+        fi
+    else
+        echo "Warning: file $env_file not found" >&2
+    fi
+done < "$MAPPING_FILE"

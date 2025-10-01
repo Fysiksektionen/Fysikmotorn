@@ -1,3 +1,0 @@
-.env
-./project-ops/cyberfohs/.env
-./project-ops/fnkth.se/.env
