@@ -1,3 +1,4 @@
+#!/bin/bash
 source ../../scripts/download.sh
 source .env
 
