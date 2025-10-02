@@ -19,7 +19,7 @@ services:
       - bittan-fysikalen-server
       - fnkth.se-flask
     volumes:
-      - ./services/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf
 
       - ./services/certbot/conf/live:/etc/nginx/certificates/live
       - ./services/certbot/conf/archive:/etc/nginx/certificates/archive
