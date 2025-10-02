@@ -1,6 +1,15 @@
 cd ..
 
 TO_PROTECT=(
+	# Scripts that are used in project-ops, and thus should not be modified by non-root users
+	"scripts/gather_envs.sh"
+	"scripts/start_docker.sh"
+	"project-ops/exec.sh"
+	"project-ops/logs.sh"
+	"project-ops/start.sh"
+	"project-ops/stop.sh"
+
+	# Sensetive service files
 	"services/certbot/conf"
 
 	"services/kons-count/server/service_account_auth_file.json"
