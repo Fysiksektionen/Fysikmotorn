@@ -12,7 +12,9 @@ Tillsammans gör detta att alla projekt hanteras på väldigt liknande sätt, oc
 
 Filstrukturen på servern är för nuvarande:
 - `/fysikmotorn`: Innehåller detta repository.
-- `/fysikmotorn/services`: Innehåller alla projekten.
+- `/fysikmotorn/project-ops`: Innehåller en mapp för varje projekt med skripts och config som kan användas av projektgruppens medlemmar.
+- `/fysikmotorn/services`: Innehåller data för projekten som inte bör sparas i Git, antingen på grund av känslighet eller av irrelevans. En del av projekten i denna mapp har en korresponderande mapp under `project-ops`, medan andra projekt saknar en projektgrupp eller inte behöver underhåll och finns därmed bara här i `services`.
+- `/fysikmotorn/docs`: Innehåller all dokumentation, som du just nu läser!
 
 ## Säkerhet
 Det finns vissa filer på servern som inte bör kunna ses av andra processer eller användare eftersom de är känsliga. I [protect-skriptet](../scripts/protect.sh), samt i backup-skripten sköts att dessa inte kan ses av övriga användare, men de måste uppdateras om fler tillkommer.
