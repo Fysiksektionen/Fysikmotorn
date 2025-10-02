@@ -16,7 +16,6 @@ while IFS='=' read -r var_name env_file; do
         value=$(grep -E "^${var_name}=" "$env_file" | head -n1 | cut -d= -f2-)
         if [[ -n "$value" ]]; then
             export "$var_name=$value"
-            echo "Setting $var_name to $value"
         else
             echo "Warning: $var_name not found in $env_file" >&2
         fi
