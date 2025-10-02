@@ -1,6 +1,7 @@
 cd ..
 
-TO_PROTECT=(
+# To protect from writing: Everyone can read (and possibly execute), only root and write
+TO_WRITE_PROTECT=(
 	# Scripts that are used in project-ops, and thus should not be modified by non-root users
 	"scripts/gather_envs.sh"
 	"scripts/start_docker.sh"
@@ -8,7 +9,10 @@ TO_PROTECT=(
 	"project-ops/logs.sh"
 	"project-ops/start.sh"
 	"project-ops/stop.sh"
+)
 
+# To protect fully: Only root can read, write and execute
+TO_PROTECT=(
 	# Sensetive service files
 	"services/certbot/conf"
 
@@ -47,6 +51,9 @@ TO_PROTECT=(
 	"services/bittan_fysikalen/gmail_creds"
 	"services/bittan_fysikalen/logs"
 );
+
+chmod o-w,o+r "${TO_WRITE_PROTECT[@]}"
+chown root:root "${TO_WRITE_PROTECT[@]}"
 
 chmod o-rwx "${TO_PROTECT[@]}"
 chown root:root "${TO_PROTECT[@]}"
