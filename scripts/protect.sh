@@ -1,6 +1,28 @@
 cd ..
 
+# To protect from writing: Everyone can read (and possibly execute), only root and write
+TO_WRITE_PROTECT=(
+	# Scripts that are used in project-ops, and thus should not be modified by non-root users
+	"scripts/gather_envs.sh"
+	"scripts/start_docker.sh"
+	"project-ops/exec.sh"
+	"project-ops/logs.sh"
+	"project-ops/start.sh"
+	"project-ops/stop.sh"
+)
+
+# To protect non-group users from writing: Everyone can read (and possibly execute), only root and group and write
+TO_GROUP_WRITE_PROTECT=(
+	# .env files managed by project groups
+	"project-ops/bittan-fysikalen/.env"
+	"project-ops/bittan-marke/.env"
+	"project-ops/cyberfohs/.env"
+	"project-ops/fnkth.se/.env"
+)
+
+# To protect fully: Only root can read, write and execute
 TO_PROTECT=(
+	# Sensetive service files
 	"services/certbot/conf"
 
 	"services/kons-count/server/service_account_auth_file.json"
@@ -38,6 +60,11 @@ TO_PROTECT=(
 	"services/bittan_fysikalen/gmail_creds"
 	"services/bittan_fysikalen/logs"
 );
+
+chmod o-w,o+r "${TO_WRITE_PROTECT[@]}"
+chown root:root "${TO_WRITE_PROTECT[@]}"
+
+chmod o-w,o+r,g+w "${TO_GROUP_WRITE_PROTECT[@]}"
 
 chmod o-rwx "${TO_PROTECT[@]}"
 chown root:root "${TO_PROTECT[@]}"

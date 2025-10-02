@@ -9,8 +9,8 @@ ssh kthid@f.kth.se
 Om du inte har lagts till som användare, kontakta Webmaster.
 
 ## Tillgång till container
-De flesta projekt innebär att medlemmar har tillgång till en eller flera docker-containers. Navigera till
+Navigera till
 ```
-cd /fysikmotorn/user-scripts/
+cd /fysikmotorn/project-ops/
 ```
 Här finns mappar för olika projekt. Varje mapp motsvarar ett projekt där det finns skripts som medlemmar har tillgång till att köra för att komma åt relevanta containers.
