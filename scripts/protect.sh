@@ -11,6 +11,15 @@ TO_WRITE_PROTECT=(
 	"project-ops/stop.sh"
 )
 
+# To protect non-group users from writing: Everyone can read (and possibly execute), only root and group and write
+TO_GROUP_WRITE_PROTECT=(
+	# .env files managed by project groups
+	"project-ops/bittan-fysikalen/.env"
+	"project-ops/bittan-marke/.env"
+	"project-ops/cyberfohs/.env"
+	"project-ops/fnkth.se/.env"
+)
+
 # To protect fully: Only root can read, write and execute
 TO_PROTECT=(
 	# Sensetive service files
@@ -54,6 +63,8 @@ TO_PROTECT=(
 
 chmod o-w,o+r "${TO_WRITE_PROTECT[@]}"
 chown root:root "${TO_WRITE_PROTECT[@]}"
+
+chmod o-w,o+r,g+w "${TO_GROUP_WRITE_PROTECT[@]}"
 
 chmod o-rwx "${TO_PROTECT[@]}"
 chown root:root "${TO_PROTECT[@]}"
