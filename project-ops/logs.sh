@@ -6,4 +6,4 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-sudo /usr/bin/docker logs $1
+/usr/bin/docker logs $1

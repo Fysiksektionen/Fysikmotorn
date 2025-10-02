@@ -7,4 +7,5 @@ if [ -z "$1" ]; then
 fi
 
 cd ../scripts
-sudo ./start_docker.sh $1
+source gather_envs.sh
+docker compose up -d $1
