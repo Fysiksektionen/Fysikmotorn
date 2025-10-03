@@ -1,5 +1,5 @@
 #!/bin/bash
-source ../../download.sh
+source ../../scripts/download.sh
 source .env
 
 mkdir ../../services/bittan_marke_frontend 2> /dev/null
