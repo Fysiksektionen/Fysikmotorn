@@ -31,6 +31,7 @@ TO_PROTECT=(
 	"services/fysikalen.se/.env"
 	"services/ffusion.se/.env"
 	"services/fadderiet/.env"
+	"services/fnkth.se-flask/.env"
 
 	"services/f.kth.se/mariadb"
 	"services/fysikalen.se/mariadb"
