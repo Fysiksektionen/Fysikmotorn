@@ -59,6 +59,10 @@ services:
   certbot:
     container_name: certbot
     image: certbot/certbot:latest
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     volumes:
       - ./services/certbot/static/:/var/www/certbot/
       - ./services/certbot/conf/:/etc/letsencrypt/
@@ -67,6 +71,10 @@ services:
   mariadb-f.kth.se:
     container_name: mariadb-f.kth.se
     image: docker.io/mariadb
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     restart: unless-stopped
     volumes:
       - ./services/f.kth.se/mariadb:/var/lib/mysql
@@ -77,6 +85,10 @@ services:
   wordpress-f.kth.se:
     container_name: wordpress-f.kth.se
     image: docker.io/wordpress:6.4.3-php8.1-fpm-alpine
+    deploy:
+      resources:
+        limits:
+          cpus: '0.40'
     restart: unless-stopped
     volumes:
       - ./services/f.kth.se/wordpress:/var/www/html/
@@ -92,6 +104,10 @@ services:
   mariadb-fysikalen.se:
     container_name: mariadb-fysikalen.se
     image: docker.io/mariadb
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     restart: unless-stopped
     volumes:
       - ./services/fysikalen.se/mariadb/:/var/lib/mysql
@@ -102,6 +118,10 @@ services:
   wordpress-fysikalen.se:
     container_name: wordpress-fysikalen.se
     image: docker.io/wordpress:6.4.3-php8.1-fpm-alpine
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
     restart: unless-stopped
     volumes:
       - ./services/fysikalen.se/wordpress:/var/www/html/
@@ -118,6 +138,10 @@ services:
   mariadb-ffusion.se:
     container_name: mariadb-ffusion.se
     image: docker.io/mariadb
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     restart: unless-stopped
     volumes:
       - ./services/ffusion.se/mariadb:/var/lib/mysql
@@ -129,6 +153,10 @@ services:
   wordpress-ffusion.se:
     container_name: wordpress-ffusion.se
     image: docker.io/wordpress:6.4.3-php8.1-fpm-alpine
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     restart: unless-stopped
     volumes:
       - ./services/ffusion.se/wordpress:/var/www/html/
@@ -145,6 +173,10 @@ services:
   mariadb-fadderiet:
     container_name: mariadb-fadderiet
     image: docker.io/mariadb
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     restart: unless-stopped
     volumes:
       - ./services/fadderiet/mariadb:/var/lib/mysql
@@ -156,6 +188,10 @@ services:
   wordpress-fadderiet:
     container_name: wordpress-fadderiet
     image: docker.io/wordpress:6.4.3-php8.1-fpm-alpine
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
     restart: unless-stopped
     volumes:
       - ./services/fadderiet/wordpress:/var/www/html/
@@ -173,18 +209,30 @@ services:
   sangbok:
     container_name: sangbok
     image: ghcr.io/fysiksektionen/sangbok-html@sha256:${SANGBOK_SHA}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
 
 
   ## Kons Count
   kons-count-redis:
     container_name: kons-count-redis
     image: docker.io/redis:alpine
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     volumes:
       - ./services/kons-count/redis/:/data
 
   kons-count:
     container_name: kons-count
     image: ghcr.io/fysiksektionen/kons_count:${KONS_COUNT_VERSION}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     volumes:
       - ./services/kons-count/server/service_account_auth_file.json:/server/service_account_auth_file.json
       - ./services/kons-count/server/.env:/server/.env
@@ -195,6 +243,10 @@ services:
   cyberfohs:
     container_name: cyberfohs
     image: ghcr.io/fysiksektionen/cyberfohs-appen:${CYBERFOHS_VERSION}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     volumes:
       - ./services/cyberfohs/static:/src/static
       - ./services/cyberfohs/media:/src/media
@@ -207,6 +259,10 @@ services:
   bittan-marke-server:
     container_name: bittan-marke-server
     image: ghcr.io/fysiksektionen/bittan-backend:${BITTAN_MARKE_VERSION}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     env_file: ./services/bittan_marke/bittan_marke_server.env
     volumes:
       - ./services/bittan_marke/static:/bittan/static
@@ -232,6 +288,10 @@ services:
   bittan_marke_postgres:
     container_name: bittan_marke_postgres
     image: postgres
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     volumes:
       - ./services/bittan_marke/postgres_data:/var/lib/postgresql/data
     env_file: ./services/bittan_marke/bittan_marke_postgres.env
@@ -248,6 +308,10 @@ services:
   bittan-fysikalen-server:
     container_name: bittan-fysikalen-server
     image: ghcr.io/fysiksektionen/bittan-backend:${BITTAN_FYSIKALEN_VERSION}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     env_file: ./services/bittan_fysikalen/bittan_fysikalen_server.env
     volumes:
       - ./services/bittan_fysikalen/static:/bittan/static
@@ -273,6 +337,10 @@ services:
   bittan-fysikalen-postgres:
     container_name: bittan-fysikalen-postgres
     image: postgres
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     volumes:
       - ./services/bittan_fysikalen/postgres_data:/var/lib/postgresql/data
     env_file: ./services/bittan_fysikalen/bittan_fysikalen_postgres.env
@@ -289,6 +357,10 @@ services:
   fnkth.se-flask:
     container_name: fnkth.se-flask
     image: ghcr.io/fysiksektionens-naringslivsnamnd/hemsida-backend:${FNKTHSE_VERSION}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     volumes:
       - ./services/fnkth.se-flask/.env:/app/.env
     restart: always
