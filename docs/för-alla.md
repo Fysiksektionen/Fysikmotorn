@@ -9,11 +9,13 @@ ssh kthid@f.kth.se
 Om du inte har lagts till som användare, kontakta Webmaster.
 
 ## Gemensamma scripts
+Projektmedlemmar har tillåtelse att köra specifika kommandon utan att behöva ange lösenord. **Om du ombeds ange lösenord har någonting gått fel** (avbryt med ctrl+c).
+
 Navigera till
 ```
 cd /fysikmotorn/project-ops/
 ```
-Här finns gemensamma scripts för olika projekt. Ni projektmedlemmar har tillgång till att köra *specifika kommandon* utan att behöva ange lösenord. För dessa behöver du känna till namnet på den relevanta containern, som till exempel kan läsas i [`compose.yaml`](../compose.yaml).
+Här finns gemensamma scripts för olika projekt. För dessa behöver du känna till namnet på den relevanta containern, som till exempel kan läsas i [`compose.yaml`](../compose.yaml).
 
 Tillgängliga skripts är följande:
 

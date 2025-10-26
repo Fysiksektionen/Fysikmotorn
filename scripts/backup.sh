@@ -15,7 +15,7 @@ function upload_backup {
 	shift
 
 	# echo "Archiving files"
-	tar -czf /tmp/$backup $@ .env compose.yaml services/nginx/nginx.conf
+	tar -czf /tmp/$backup $@ .env compose.yaml nginx.conf environments.conf
 
 	# echo "Uploading"
 	rclone copyto -P /tmp/$backup Drive:$backup
