@@ -18,6 +18,7 @@ TO_GROUP_WRITE_PROTECT=(
 	"project-ops/bittan-marke/.env"
 	"project-ops/cyberfohs/.env"
 	"project-ops/fnkth.se/.env"
+	"project-ops/valkompassen/.env"
 )
 
 # To protect fully: Only root can read, write and execute
