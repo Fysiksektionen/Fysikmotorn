@@ -1,6 +1,6 @@
 cd ..
 
-# To protect from writing: Everyone can read (and possibly execute), only root and write
+# To protect from writing: Everyone can read (and possibly execute), only root can write
 TO_WRITE_PROTECT=(
 	# Scripts that are used in project-ops, and thus should not be modified by non-root users
 	"scripts/gather_envs.sh"
@@ -11,13 +11,14 @@ TO_WRITE_PROTECT=(
 	"project-ops/stop.sh"
 )
 
-# To protect non-group users from writing: Everyone can read (and possibly execute), only root and group and write
+# To protect non-group users from writing: Everyone can read (and possibly execute), only root and group can write
 TO_GROUP_WRITE_PROTECT=(
 	# .env files managed by project groups
 	"project-ops/bittan-fysikalen/.env"
 	"project-ops/bittan-marke/.env"
 	"project-ops/cyberfohs/.env"
 	"project-ops/fnkth.se/.env"
+	"project-ops/valkompassen/.env"
 )
 
 # To protect fully: Only root can read, write and execute
