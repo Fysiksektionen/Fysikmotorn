@@ -23,19 +23,14 @@ Det finns vissa filer på servern som inte bör kunna ses av andra processer ell
 
 Var försiktig med dessa filer och generellt kring filer som innehåller autentisering med mer. Eftersom få har tillgång till servern är det ingen katastrof om dessa skulle synas, men det är bra att undvika. Om nya hemliga filer tillkommer, se till att backup- och protect-skriptet uppdateras för att reflektera detta.
 
-## Användare
+## Användare och grupper
 Användare på servern är personliga och namngivna efter KTH-id:n. Ett konto skapas med hjälp av `adduser`-kommandot. Ägaren får tillgång till deras konto genom att deras publika SSH-nyckel läggs till under `~/.ssh/authorized_keys`-mappen.
 
-Det finns inget helt standardiserat sätt att ge folk tillgång till ett visst projekt. Om ett projekt ska ha en delad mapp kan man använda [share_dir-skriptet](../scripts/share_dir.sh) för att dela en folder med en grupp.
+Varje projekt som kräver underhåll av användare har vanligtvis en tillhörande grupp. Då finns en mapp `/project-ops/<projektnamn>/` som bara den gruppen har tillgång till. Denna grupp ska dessutom ha tillgång till att köra vissa specifika kommandon som är definierat i `/etc/sudoers`. Redigera denna fil för att ge tillgång. De kommandon som en grupp ska få köra som standard står i [för-alla](för-alla.md).
 
 Det finns oftast ingen anledning att ta bort en person från ett projekt de en gång haft tillgång till, utom de kan oftast fortsätta ha tillgång (med undantag för viktiga personuppgifter).
 
 Om användaren är Webmaster ska de även läggas till i `sudo`-gruppen vilket ger dem tillgång till `sudo` (super user do).
-
-## Filbehörigheter
-För att filer i en viss delad mapp ska gå att ändra för alla användare i en viss grupp är det viktigt att `umask` är 002, att stickybit är satt, och att mappen har motsvarande grupp som sin.
-
-`umask` verkar vara 002 på Ubuntu som standard och skriptet [share_dir.sh](../scripts/share_dir.sh) kan användas för resterande!
 
 ## Program på servern
 OBS! På Ubuntu verkar snap inte fungera på grund av att den inte tillåter root enkelt, och apt-get har för gamla versioner. På vardera programs sida finns dock lämpliga installations instruktioner.
