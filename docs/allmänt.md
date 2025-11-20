@@ -10,13 +10,13 @@ Tillsammans gör detta att alla projekt hanteras på väldigt liknande sätt, oc
 
 Filstrukturen på servern är för nuvarande:
 - `/fysikmotorn`: Innehåller detta repository.
-- `/fysikmotorn/project-ops`: Innehåller en mapp för varje projekt med skripts och config som kan användas av projektgruppens medlemmar. Detta är den enda mappen menad för användare som inte är Webmaster. Se [för-alla](för-alla.md) för hur användare förväntas jobba här.
+- `/fysikmotorn/project-ops`: Innehåller mappar för vissa projekt med skripts och config som kan användas av projektgruppens medlemmar. Detta är den enda mappen menad för användare som inte är Webmaster. Se [för-alla](för-alla.md) för hur användare förväntas jobba här.
 - `/fysikmotorn/services`: Innehåller data för projekten som inte bör sparas i Git, antingen på grund av känslighet eller av irrelevans. En del av projekten i denna mapp har en korresponderande mapp under `project-ops`, medan andra projekt saknar en projektgrupp eller inte behöver underhåll och finns därmed bara här i `services`.
 - `/fysikmotorn/scripts`: Innehåller skripts.
 - `/fysikmotorn/docs`: Innehåller all dokumentation, som du just nu läser!
 
 ## Versionshantering
-Alla projekt i [`compose.yaml`](../compose.yaml) måste ha en tillhörande version som säger vilken release i GitHub som ska användas. Platsen som en version specificeras är skrivet i [`environments.conf`](../environments.conf). För projekt där det finns en projektgrupp som ska få ändra versionen är denna plats `/project-ops/<projektnamn>/.env`, och för resternade är det `.env`. Se [`scripts/gather_envs.sh`](../scripts/gather_envs.sh) för hur dessa variabler laddas in.
+Alla projekt i [`compose.yaml`](../compose.yaml), samt alla projekt som har ett nedladdningsskrift för statiska filer, måste ha en tillhörande version som säger vilken release i GitHub som ska användas. Platsen som en version specificeras är skrivet i [`environments.conf`](../environments.conf). För projekt där det finns en projektgrupp som ska få ändra versionen är denna plats `/project-ops/<projektnamn>/.env`, och för resternade är det [`.env`](../.env). Se [`scripts/gather_envs.sh`](../scripts/gather_envs.sh) för hur dessa variabler laddas in.
 
 ## Säkerhet
 Det finns vissa filer på servern som inte bör kunna ses av andra processer eller användare eftersom de är känsliga. I [protect-skriptet](../scripts/protect.sh), samt i backup-skripten sköts att dessa inte kan ses av övriga användare, men de måste uppdateras om fler tillkommer.
