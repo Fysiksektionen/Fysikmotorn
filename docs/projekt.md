@@ -87,3 +87,9 @@ För tillfället finns följande delprojekt:
 
 Varje delprojekt har en backend i Django samt en frontend bestående av statiska filer.
 
+## fnkth.se
+**Grupp**: `fnkthse`
+
+[Länk till GitHub](https://github.com/Fysiksektionens-Naringslivsnamnd/hemsida)
+
+En hemsida för FN som de själva sköter koden för men som host:as på Fysikmotorn. Projektet är i skrivande stund inte klart, men består för tillfället av en Flask-server samt några statiska filer.
