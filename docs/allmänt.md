@@ -1,20 +1,22 @@
 # Allmänt
 ## Struktur
-Servern är strukturerad runt en Docker Compose-fil [`compose.yaml`](../compose.yaml). Denna innehåller information för Docker om hur man kör alla de olika projekten och hur de ska sättas ihop. I och med att det är just Docker betyder det också att all kod körs på samma sätt oavsett dator.
-
-För att bygga dessa Dockercontainrar används GitHub Actions i varje projekts GitHubsida. De bygger en container som enkelt kan laddas ner av Docker Compose-filen. Exakt vilken version håller dessutom [`.env`-filen](../.env) koll på!
+Servern är strukturerad runt en Docker Compose-fil [`compose.yaml`](../compose.yaml). Denna innehåller information för Docker om hur man kör alla de olika projekten och hur de ska sättas ihop. I och med att det är just Docker betyder det också att all kod körs på samma sätt oavsett dator. För att bygga dessa Dockercontainrar används GitHub Actions i varje projekts GitHubsida. De bygger en container som enkelt kan laddas ner av Docker Compose-filen.
 
 I Docker körs alla projekten, men också en nginx-server. Denna ansvarar för att ta emot all datatrafik som servern får och skicka vidare den till rätt projekt. DESSUTOM levererar den filer. Alla filer den kan se (titta i [Docker Compose-filen](../compose.yaml), under `nginx: [...] volumes:`), kan nås genom att gå in på `https://domän.se/väg/till/filen`, och nginx ser till att leverera den! De små hemsideprojekten behöver till exempel ingen kod som körs på servern utom bara att HTML- och Javascriptfilerna levereras vilket nginx tar hand om. Om du inte är bekant med detta, sök gärna upp om "static files". Notera också att nginx här är konfigurerad att allt som den inte vet var det ska skickas vidare till Wordpress.
 
-Likt hur Dockercontainrarna byggs med GitHub Actions byggs även static files till många projekt med GitHub Actions. Dessa blir en release som sedan kan laddas ner med hjälp av nerladdningsskripten i [`/scripts/`](../scripts/). Underhåll dessa! Det gör att man inte måste undra vilken version av vardera paket som används för att bygga ett projekt.
+Likt hur Dockercontainrarna byggs med GitHub Actions byggs även static files till många projekt med GitHub Actions. Dessa blir en release som sedan kan laddas ner av användare på Fysikmotorn. Underhåll dessa! Det gör att man inte måste undra vilken version av vardera paket som används för att bygga ett projekt. Se mer under [användning](användning.md#nedladdningsskript).
 
 Tillsammans gör detta att alla projekt hanteras på väldigt liknande sätt, och att uppstart, ändringar och flyttar knappt skiljer sig mellan projekt. Förhoppningen är att det underlättar Webmasterns arbetsbörda och gör det lättare att bevara gamla projekt.
 
 Filstrukturen på servern är för nuvarande:
 - `/fysikmotorn`: Innehåller detta repository.
-- `/fysikmotorn/project-ops`: Innehåller en mapp för varje projekt med skripts och config som kan användas av projektgruppens medlemmar.
+- `/fysikmotorn/project-ops`: Innehåller en mapp för varje projekt med skripts och config som kan användas av projektgruppens medlemmar. Detta är den enda mappen menad för användare som inte är Webmaster. Se [för-alla](för-alla.md) för hur användare förväntas jobba här.
 - `/fysikmotorn/services`: Innehåller data för projekten som inte bör sparas i Git, antingen på grund av känslighet eller av irrelevans. En del av projekten i denna mapp har en korresponderande mapp under `project-ops`, medan andra projekt saknar en projektgrupp eller inte behöver underhåll och finns därmed bara här i `services`.
+- `/fysikmotorn/scripts`: Innehåller skripts.
 - `/fysikmotorn/docs`: Innehåller all dokumentation, som du just nu läser!
+
+## Versionshantering
+Alla projekt i [`compose.yaml`](../compose.yaml) måste ha en tillhörande version som säger vilken release i GitHub som ska användas. Platsen som en version specificeras är skrivet i [`environments.conf`](../environments.conf). För projekt där det finns en projektgrupp som ska få ändra versionen är denna plats `/project-ops/<projektnamn>/.env`, och för resternade är det `.env`. Se [`scripts/gather_envs.sh`](../scripts/gather_envs.sh) för hur dessa variabler laddas in.
 
 ## Säkerhet
 Det finns vissa filer på servern som inte bör kunna ses av andra processer eller användare eftersom de är känsliga. I [protect-skriptet](../scripts/protect.sh), samt i backup-skripten sköts att dessa inte kan ses av övriga användare, men de måste uppdateras om fler tillkommer.
