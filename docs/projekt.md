@@ -69,8 +69,21 @@ Just nu innehåller det en fil som behövde finnas tillgänglig för KTH:s auten
 ## Cyberföhs
 **Grupp**: `cyberfohs`
 
+[Länk till GitHub](https://github.com/Fysiksektionen/cyberfohs-appen).
+
 Cyberföhs-appen är en app som används under cyberföhsning under mottagningen. Appens front byggs för tillfället inte på GitHub, men backenden gör det!
 
 Notera att den behöver en databas (som man kan skapa med `./init.sh` kommandot om man har en terminal i containern (`docker exec -it cyberfohs bash`)), samt att den behöver static files (som genereras med `./manage.py collectstatic` också inne i containern).
 
-OBS! Det här projektet brukar skötas av en grupp varje år, så de har förhoppningsvis lite koll!
+## BitTan
+**Grupp**: `bittan`
+
+[Länk till GitHub](https://github.com/Fysiksektionen/bittan)
+
+BitTan är ett system som används för att sälja biljetter.
+För tillfället finns följande delprojekt:
+- `bittan-fysikalen`: Försäljning av biljetter till Fysikalen
+- `bittan-marke`: Försäljning av BitTan-märket
+
+Varje delprojekt har en backend i Django samt en frontend bestående av statiska filer.
+
