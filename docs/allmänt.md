@@ -16,7 +16,7 @@ Filstrukturen på servern är för nuvarande:
 - `/fysikmotorn/docs`: Innehåller all dokumentation, som du just nu läser!
 
 ## Versionshantering
-Alla projekt i [`compose.yaml`](../compose.yaml), samt alla projekt som har ett nedladdningsskrift för statiska filer, måste ha en tillhörande version som säger vilken release i GitHub som ska användas. Platsen som en version specificeras är skrivet i [`environments.conf`](../environments.conf). För projekt där det finns en projektgrupp som ska få ändra versionen är denna plats `/project-ops/<projektnamn>/.env`, och för resternade är det [`.env`](../.env). Se [`scripts/gather_envs.sh`](../scripts/gather_envs.sh) för hur dessa variabler laddas in.
+Alla projekt i [`compose.yaml`](../compose.yaml), samt alla projekt som har ett nedladdningsskrift för statiska filer, måste ha en tillhörande version som säger vilken release i GitHub som ska användas. Platsen som en version specificeras är skrivet i [`environments.conf`](../environments.conf). För projekt där det finns en projektgrupp som ska få ändra versionen är denna plats `/project-ops/<projektnamn>/.env`, och för resterande är det [`.env`](../.env). Se [`scripts/gather_envs.sh`](../scripts/gather_envs.sh) för hur dessa variabler laddas in.
 
 ## Säkerhet
 Det finns vissa filer på servern som inte bör kunna ses av andra processer eller användare eftersom de är känsliga. I [protect-skriptet](../scripts/protect.sh), samt i backup-skripten sköts att dessa inte kan ses av övriga användare, men de måste uppdateras om fler tillkommer.
