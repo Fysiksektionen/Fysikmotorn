@@ -36,11 +36,13 @@ Sidornas Wordpressversion behöver uppdateras ibland, så gör gärna det! Det s
 Notera att det inte finns ett GitHub repo för dessa, utom all information är i backups:en av historiska skäl.
 
 ## Kons Count
-Kons Count är en hemsida som är till för att räkna antalet person i Konsulatet under pubar.
+Kons Count är en hemsida (https://f.kth.se/counter samt https://f.kth.se/counter/admin) som är till för att räkna antalet person i Konsulatet under pubar.
 
 Den har två delar: en frontend och backend. Frontend:en är ett React-projekt och byggs på GitHub så att filerna sedan kan levereras med hjälp av nginx. För att underlänkar (som counter/admin) ska fungera behövs också att nginx är konfigurerad att skicka all trafik som börjar med counter till dess `index.html`-sida.
 
 Backend:en är en liten server i en Docker container som också byggs på GitHub. Notera att servern har en konfigurationsfil (`.env`) som inte är på GitHub och en autentiseringsfil (`service_account_auth_file.json`) som kommer från Google.
+
+Vilka som har tillgång till admingränssnittet specificeras inte i Fysikmotorn, utan sköts av Google-gruppen `konscount`.
 
 ## Nämndkompassen
 Nämndkompassen är en kul liten hemsida där man efter att ha svarat på några frågor får veta vilken nämnd man borde gå med i. Detta projekt är enkla html-sidor och en release görs därför manuellt och laddas ner med nedladdningsskriptet. 
