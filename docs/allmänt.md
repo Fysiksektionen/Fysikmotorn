@@ -21,15 +21,7 @@ Alla projekt i [`compose.yaml`](../compose.yaml), samt alla projekt som har ett 
 ## Säkerhet
 Det finns vissa filer på servern som inte bör kunna ses av andra processer eller användare eftersom de är känsliga. I [protect-skriptet](../scripts/protect.sh), samt i backup-skripten sköts att dessa inte kan ses av övriga användare, men de måste uppdateras om fler tillkommer.
 
-En lista av dessa hemligheter är:
-- SSL-Certifikat - Används för att verifiera för webbläsare att vi verkligen är f.kth.se. De skulle annars kunna användas för att låtsas vara f.kth.se och lura folk på lösenord.
-- `.env`-filer i Wordpress - Innehåller databaslösenord och skulle kunna användas för att läsa eller ändra data på sektionens hemsidor (om man har tillgång till servern, men ej rootprivilegier).
-- Mariadb-mappar i Wordpress - Innehåller själva databaserna och skulle kunna användas för att läsa hemlig data på sektionens hemsidor.
-- `service_account_auth_file.json` i kons-count - Innehåller API-nycklar med begränsad tillgång till vårt Google Workspace.
-
-Var försiktig med dessa filer och generellt kring filer som innehåller autentisering med mer. Eftersom få har tillgång till servern är det ingen katastrof om dessa skulle synas, men det är bra att undvika.
-
-Om nya hemliga filer tillkommer, till exempel Swishkoder, se till att backup- och protect-skriptet uppdateras för att reflektera detta.
+Var försiktig med dessa filer och generellt kring filer som innehåller autentisering med mer. Eftersom få har tillgång till servern är det ingen katastrof om dessa skulle synas, men det är bra att undvika. Om nya hemliga filer tillkommer, se till att backup- och protect-skriptet uppdateras för att reflektera detta.
 
 ## Användare
 Användare på servern är personliga och namngivna efter KTH-id:n. Ett konto skapas med hjälp av `adduser`-kommandot. Ägaren får tillgång till deras konto genom att deras publika SSH-nyckel läggs till under `~/.ssh/authorized_keys`-mappen.
