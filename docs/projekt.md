@@ -29,7 +29,7 @@ docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certb
 OBS! Certifikaten håller i 90 dagar från att de skapas. Om de går ut kommer en varning till alla som försöker gå in på hemsidan.
 
 ## Wordpresshemsidor
-Sektionen underhåller vid skrivande tillfälle 3 stycken Wordpress-sidor. Dessa används för att enkelt kommunicera med omvärlden, och innehållshanteringen av dessa är utspridd på sektionen, där f.kth.se hittills faller på Webmaster.
+Sektionen underhåller vid skrivande tillfälle 3 stycken Wordpress-sidor: f.kth.se, fysikalen.se, f.kth.se/fadderiet (även ffusion.se, men denna är numera avvecklad och omdirigerar istället). Dessa används för att enkelt kommunicera med omvärlden, och innehållshanteringen av dessa är utspridd på sektionen, där f.kth.se hittills faller på Webmaster.
 
 Sidornas Wordpressversion behöver uppdateras ibland, så gör gärna det! Det sker genom att först uppdatera via adminkonsolen, och sedan ändra versionen i den centrala Docker Compose-filen. Kom ihåg att ta en backup innan!
 
