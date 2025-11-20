@@ -93,3 +93,9 @@ Varje delprojekt har en backend i Django samt en frontend bestående av statiska
 [Länk till GitHub](https://github.com/Fysiksektionens-Naringslivsnamnd/hemsida)
 
 En hemsida för FN som de själva sköter koden för men som host:as på Fysikmotorn. Projektet är i skrivande stund inte klart, men består för tillfället av en Flask-server samt några statiska filer.
+
+## Valkompassen
+
+[Länk till GitHub](https://github.com/Fysiksektionen/Valkompass-2025)
+
+En liten tjänst för att låta sektionens medlemmar se vilka valkandidater de gillar mest. Projektet består av en Flask-server.
