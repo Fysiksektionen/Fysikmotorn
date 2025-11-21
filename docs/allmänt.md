@@ -18,6 +18,8 @@ Filstrukturen på servern är för nuvarande:
 ## Versionshantering
 Alla projekt i [`compose.yaml`](../compose.yaml), samt alla projekt som har ett nedladdningsskrift för statiska filer, måste ha en tillhörande version som säger vilken release i GitHub som ska användas. Platsen som en version specificeras är skrivet i [`environments.conf`](../environments.conf). För projekt där det finns en projektgrupp som ska få ändra versionen är denna plats `/project-ops/<projektnamn>/.env`, och för resterande är det [`.env`](../.env). Se [`scripts/gather_envs.sh`](../scripts/gather_envs.sh) för hur dessa variabler laddas in.
 
+Notera att det är [`environments.conf`](../environments.conf) som bestämmer vilka .env-filer som kan sätta vilka variabler. En användare som exempelvis bara har tillgång till att redigera `/project-ops/cyberfohs/.env` kan alltså inte ändra någon annan variabel än just `CYBERFOHS_VERSION`.
+
 ## Användare och grupper
 Användare på servern är personliga och namngivna efter KTH-id:n. Ett konto skapas med hjälp av `adduser`-kommandot. Ägaren får tillgång till deras konto genom att deras publika SSH-nyckel läggs till under `~/.ssh/authorized_keys`-mappen.
 
