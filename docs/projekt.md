@@ -36,6 +36,8 @@ Sidornas Wordpressversion behöver uppdateras ibland, så gör gärna det! Det s
 Notera att det inte finns ett GitHub repo för dessa, utom all information är i backups:en av historiska skäl.
 
 ## Kons Count
+[Länk till GitHub](https://github.com/Fysiksektionen/kons_count)
+
 Kons Count är en hemsida (https://f.kth.se/counter samt https://f.kth.se/counter/admin) som är till för att räkna antalet person i Konsulatet under pubar.
 
 Den har två delar: en frontend och backend. Frontend:en är ett React-projekt och byggs på GitHub så att filerna sedan kan levereras med hjälp av nginx. För att underlänkar (som counter/admin) ska fungera behövs också att nginx är konfigurerad att skicka all trafik som börjar med counter till dess `index.html`-sida.
@@ -45,16 +47,22 @@ Backend:en är en liten server i en Docker container som också byggs på GitHub
 Vilka som har tillgång till admingränssnittet specificeras inte i Fysikmotorn, utan sköts av Google-gruppen `konscount`.
 
 ## Nämndkompassen
+[Länk till GitHub](https://github.com/Fysiksektionen/namndkompassen)
+
 Nämndkompassen är en kul liten hemsida där man efter att ha svarat på några frågor får veta vilken nämnd man borde gå med i. Detta projekt är enkla html-sidor och en release görs därför manuellt och laddas ner med nedladdningsskriptet. 
 
 Notera att ingen kod exekveras lokalt, utom allt jobb sköts av nginx. För att detta ska ske måste dock nginx ha tillgång till filerna via mount binds definierade i Docker Compose-filen.
 
 ## Signature
+[Länk till GitHub](https://github.com/Fysiksektionen/signature-website)
+
 En liten hemsida där man kan skapa funktionärssignaturer för mailen. Den består bara av enkla HTML- och javascriptsidor, och releasen görs manuellt. Notera att den skulle må bra av lite CSS.
 
 Notera att ingen kod exekveras lokalt, utom allt jobb sköts av nginx. För att detta ska ske måste dock nginx ha tillgång till filerna via mount binds definierade i Docker Compose-filen.
 
 ## Arcade
+[GitHub (hemsidan)](https://github.com/Fysiksektionen/arcade-home) & [GitHub (källkod till några spel)](https://github.com/Fysiksektionen/Arcade-website)
+
 Arcade är en samling spel som har gjorts på sektionen med åren. Notera att vår installation här har två delar.
 
 Det finns en homepage som är skriven i React och byggs på GitHub och sedan finns det några spel som är skrivna i html och Javascript och release:as manuellt. Ingen av dessa kräver att kod körs lokalt utan behöver bara att filerna levereras, vilket sköts av nginx.
@@ -69,7 +77,7 @@ Just nu innehåller det en fil som behövde finnas tillgänglig för KTH:s auten
 ## Cyberföhs
 **Grupp**: `cyberfohs`
 
-[Länk till GitHub](https://github.com/Fysiksektionen/cyberfohs-appen).
+[Länk till GitHub](https://github.com/Fysiksektionen/cyberfohs-appen)
 
 Cyberföhs-appen är en app som används under cyberföhsning under mottagningen. Appens front byggs för tillfället inte på GitHub, men backenden gör det!
 
