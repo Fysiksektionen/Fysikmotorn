@@ -354,7 +354,7 @@ services:
   #     timeout: 5s
   #     retries: 10
 
-  # fnkth.se
+      # fnkth.se
   fnkth.se-flask:
     container_name: fnkth.se-flask
     image: ghcr.io/fysiksektionens-naringslivsnamnd/hemsida-backend:${FNKTHSE_VERSION}
