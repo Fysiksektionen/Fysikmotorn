@@ -50,6 +50,8 @@ services:
       - ./services/misc/f.png:/f.kth.se/f.png
       - ./services/misc/logo.png:/f.kth.se/logo.png
       - ./services/misc/robots.txt:/f.kth.se/robots.txt
+      
+      - ./services/fn-crm:/fn-crm
 
         #- ./services/bittan_marke/static:/f.kth.se/bittan-marke-django/static
         #- ./services/bittan_marke_frontend:/f.kth.se/bittan-marke
@@ -391,7 +393,7 @@ services:
       - "3000:3000"
     environment:
       NODE_PORT: 3000 
-      PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-fn-crm-twenty-db}:${PG_DATABASE_PORT:-5432}/default
+      PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-fn-crm-twenty-db}:${PG_DATABASE_PORT:-5432}/${PG_DATABASE_NAME:-default}
       SERVER_URL: ${SERVER_URL:-https://crm.fnkth.se}
       REDIS_URL: ${REDIS_URL:-redis://fn-crm-twenty-redis:6379}
       DISABLE_DB_MIGRATIONS: ${DISABLE_DB_MIGRATIONS}
