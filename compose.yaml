@@ -387,6 +387,10 @@ services:
   fn-crm-twenty-server:
     container_name: fn-crm-twenty-server
     image: twentycrm/twenty:${TAG:-latest}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     volumes:
       - ./services/fn-crm/fn-crm-twenty-server-local-data:/app/packages/twenty-server/.local-storage
     ports:
@@ -421,6 +425,10 @@ services:
   fn-crm-twenty-worker:
     container_name: fn-crm-twenty-worker
     image: twentycrm/twenty:${TAG:-latest}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     volumes:
       - ./services/fn-crm/fn-crm-twenty-server-local-data:/app/packages/twenty-server/.local-storage
     command: ["yarn", "worker:prod"]
@@ -441,6 +449,10 @@ services:
   fn-crm-twenty-db:
     container_name: fn-crm-twenty-db
     image: postgres:16
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     volumes:
       - ./services/fn-crm/fn-crm-twenty-db-data:/var/lib/postgresql/data
     environment:
@@ -457,6 +469,10 @@ services:
   fn-crm-twenty-redis:
     container_name: fn-crm-twenty-redis
     image: redis
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
     restart: always
     command: ["--maxmemory-policy", "noeviction"]
     healthcheck:
