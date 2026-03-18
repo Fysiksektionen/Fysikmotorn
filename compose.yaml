@@ -422,7 +422,7 @@ services:
     container_name: fn-crm-twenty-worker
     image: twentycrm/twenty:${TAG:-latest}
     volumes:
-      - ./services/fn-crm/server-local-data:/app/packages/twenty-server/.local-storage
+      - ./services/fn-crm/fn-crm-twenty-server-local-data:/app/packages/twenty-server/.local-storage
     command: ["yarn", "worker:prod"]
     environment:
       PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@fn-crm-twenty-db:5432/${PG_DATABASE_NAME:-default}
