@@ -384,99 +384,100 @@ services:
   #     DEBUG: false
 
     ## fn-crm
-  fn-crm-twenty-server:
-    container_name: fn-crm-twenty-server
-    image: twentycrm/twenty:${TAG:-latest}
-    deploy:
-      resources:
-        limits:
-          cpus: '0.15'
-    volumes:
-      - ./services/fn-crm/fn-crm-twenty-server-local-data:/app/packages/twenty-server/.local-storage
-    ports:
-      - "3000:3000"
-    environment:
-      NODE_PORT: 3000 
-      PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-fn-crm-twenty-db}:${PG_DATABASE_PORT:-5432}/${PG_DATABASE_NAME:-default}
-      SERVER_URL: ${SERVER_URL:-https://crm.fnkth.se}
-      REDIS_URL: ${REDIS_URL:-redis://fn-crm-twenty-redis:6379}
-      DISABLE_DB_MIGRATIONS: ${DISABLE_DB_MIGRATIONS}
-      DISABLE_CRON_JOBS_REGISTRATION: ${DISABLE_CRON_JOBS_REGISTRATION}
+  # fn-crm-twenty-server:
+  #   container_name: fn-crm-twenty-server
+  #   image: twentycrm/twenty:${TAG:-latest}
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: '0.15'
+  #   volumes:
+  #     - ./services/fn-crm/fn-crm-twenty-server-local-data:/app/packages/twenty-server/.local-storage
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     NODE_PORT: 3000 
+  #     PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-fn-crm-twenty-db}:${PG_DATABASE_PORT:-5432}/${PG_DATABASE_NAME:-default}
+  #     SERVER_URL: ${SERVER_URL:-https://crm.fnkth.se}
+  #     REDIS_URL: ${REDIS_URL:-redis://fn-crm-twenty-redis:6379}
+  #     DISABLE_DB_MIGRATIONS: ${DISABLE_DB_MIGRATIONS}
+  #     DISABLE_CRON_JOBS_REGISTRATION: ${DISABLE_CRON_JOBS_REGISTRATION}
+  #
+  #     STORAGE_TYPE: ${STORAGE_TYPE:-local}
+  #     STORAGE_S3_REGION: ${STORAGE_S3_REGION}
+  #     STORAGE_S3_NAME: ${STORAGE_S3_NAME}
+  #     STORAGE_S3_ENDPOINT: ${STORAGE_S3_ENDPOINT}
+  #
+  #     APP_SECRET: ${APP_SECRET:-replace_me_with_a_random_string}
+  #
+  #   depends_on:
+  #     fn-crm-twenty-db:
+  #       condition: service_healthy
+  #     fn-crm-twenty-redis:
+  #       condition: service_healthy
+  #   healthcheck:
+  #     test: curl --fail http://localhost:3000/healthz
+  #     interval: 5s
+  #     timeout: 5s
+  #     retries: 20
+  #   restart: always
+  #
+  # fn-crm-twenty-worker:
+  #   container_name: fn-crm-twenty-worker
+  #   image: twentycrm/twenty:${TAG:-latest}
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: '0.15'
+  #   volumes:
+  #     - ./services/fn-crm/server-local-data:/app/packages/twenty-server/.local-storage
+  #   command: ["yarn", "worker:prod"]
+  #   environment:
+  #     PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@fn-crm-twenty-db:5432/${PG_DATABASE_NAME:-default}
+  #     SERVER_URL: ${SERVER_URL:-https://crm.fnkth.se}
+  #     REDIS_URL: ${REDIS_URL:-redis://fn-crm-twenty-redis:6379}
+  #     DISABLE_DB_MIGRATIONS: "true" # it already runs on the server
+  #     DISABLE_CRON_JOBS_REGISTRATION: "true" # it already runs on the server
+  #
+  #     STORAGE_TYPE: ${STORAGE_TYPE:-local}
+  #     STORAGE_S3_REGION: ${STORAGE_S3_REGION}
+  #     STORAGE_S3_NAME: ${STORAGE_S3_NAME}
+  #     STORAGE_S3_ENDPOINT: ${STORAGE_S3_ENDPOINT}
+  #
+  #     APP_SECRET: ${APP_SECRET:-replace_me_with_a_random_string}
+  #
+  # fn-crm-twenty-db:
+  #   container_name: fn-crm-twenty-db
+  #   image: postgres:16
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: '0.15'
+  #   volumes:
+  #     - ./services/fn-crm/fn-crm-twenty-db-data:/var/lib/postgresql/data
+  #   environment:
+  #     POSTGRES_DB: ${PG_DATABASE_NAME:-default}
+  #     POSTGRES_PASSWORD: ${PG_DATABASE_PASSWORD:-postgres}
+  #     POSTGRES_USER: ${PG_DATABASE_USER:-postgres}
+  #   healthcheck:
+  #     test: pg_isready -U ${PG_DATABASE_USER:-postgres} -h localhost -d postgres
+  #     interval: 5s
+  #     timeout: 5s
+  #     retries: 10
+  #   restart: always
+  #
+  # fn-crm-twenty-redis:
+  #   container_name: fn-crm-twenty-redis
+  #   image: redis
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: '0.15'
+  #   restart: always
+  #   command: ["--maxmemory-policy", "noeviction"]
+  #   healthcheck:
+  #     test: ["CMD", "redis-cli", "ping"]
+  #     interval: 5s
+  #     timeout: 5s
+  #     retries: 10
 
-      STORAGE_TYPE: ${STORAGE_TYPE:-local}
-      STORAGE_S3_REGION: ${STORAGE_S3_REGION}
-      STORAGE_S3_NAME: ${STORAGE_S3_NAME}
-      STORAGE_S3_ENDPOINT: ${STORAGE_S3_ENDPOINT}
-
-      APP_SECRET: ${APP_SECRET:-replace_me_with_a_random_string}
-
-    depends_on:
-      fn-crm-twenty-db:
-        condition: service_healthy
-      fn-crm-twenty-redis:
-        condition: service_healthy
-    healthcheck:
-      test: curl --fail http://localhost:3000/healthz
-      interval: 5s
-      timeout: 5s
-      retries: 20
-    restart: always
-
-  fn-crm-twenty-worker:
-    container_name: fn-crm-twenty-worker
-    image: twentycrm/twenty:${TAG:-latest}
-    deploy:
-      resources:
-        limits:
-          cpus: '0.15'
-    volumes:
-      - ./services/fn-crm/fn-crm-twenty-server-local-data:/app/packages/twenty-server/.local-storage
-    command: ["yarn", "worker:prod"]
-    environment:
-      PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@fn-crm-twenty-db:5432/${PG_DATABASE_NAME:-default}
-      SERVER_URL: ${SERVER_URL:-https://crm.fnkth.se}
-      REDIS_URL: ${REDIS_URL:-redis://fn-crm-twenty-redis:6379}
-      DISABLE_DB_MIGRATIONS: "true" # it already runs on the server
-      DISABLE_CRON_JOBS_REGISTRATION: "true" # it already runs on the server
-
-      STORAGE_TYPE: ${STORAGE_TYPE:-local}
-      STORAGE_S3_REGION: ${STORAGE_S3_REGION}
-      STORAGE_S3_NAME: ${STORAGE_S3_NAME}
-      STORAGE_S3_ENDPOINT: ${STORAGE_S3_ENDPOINT}
-
-      APP_SECRET: ${APP_SECRET:-replace_me_with_a_random_string}
-
-  fn-crm-twenty-db:
-    container_name: fn-crm-twenty-db
-    image: postgres:16
-    deploy:
-      resources:
-        limits:
-          cpus: '0.15'
-    volumes:
-      - ./services/fn-crm/fn-crm-twenty-db-data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: ${PG_DATABASE_NAME:-default}
-      POSTGRES_PASSWORD: ${PG_DATABASE_PASSWORD:-postgres}
-      POSTGRES_USER: ${PG_DATABASE_USER:-postgres}
-    healthcheck:
-      test: pg_isready -U ${PG_DATABASE_USER:-postgres} -h localhost -d postgres
-      interval: 5s
-      timeout: 5s
-      retries: 10
-    restart: always
-
-  fn-crm-twenty-redis:
-    container_name: fn-crm-twenty-redis
-    image: redis
-    deploy:
-      resources:
-        limits:
-          cpus: '0.15'
-    restart: always
-    command: ["--maxmemory-policy", "noeviction"]
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
