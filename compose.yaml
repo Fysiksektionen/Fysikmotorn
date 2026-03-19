@@ -19,7 +19,7 @@ services:
         # - bittan-fysikalen-server
       - fnkth.se-flask
         # - valkompassen
-      - fn-crm-twenty-server
+        #- fn-crm-twenty-server
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
 
@@ -51,7 +51,7 @@ services:
       - ./services/misc/logo.png:/f.kth.se/logo.png
       - ./services/misc/robots.txt:/f.kth.se/robots.txt
       
-      - ./services/fn-crm:/fn-crm
+        #- ./services/fn-crm:/fn-crm
 
         #- ./services/bittan_marke/static:/f.kth.se/bittan-marke-django/static
         #- ./services/bittan_marke_frontend:/f.kth.se/bittan-marke
