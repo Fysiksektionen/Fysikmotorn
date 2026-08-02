@@ -255,6 +255,7 @@ services:
       - ./services/cyberfohs/static:/src/static
       - ./services/cyberfohs/media:/src/media
       - ./services/cyberfohs/data/db:/src/db
+      - ./services/cyberfohs/secretkey.txt:/src/secretkey.txt
 
     init: true
 
