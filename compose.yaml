@@ -247,6 +247,7 @@ services:
   cyberfohs:
     container_name: cyberfohs
     image: ghcr.io/fysiksektionen/cyberfohs-appen:${CYBERFOHS_VERSION}
+    command: ["gunicorn", "-c", "config/gunicorn/dev.py", "--access-logfile", "-", "--error-logfile", "-"]
     deploy:
       resources:
         limits:
