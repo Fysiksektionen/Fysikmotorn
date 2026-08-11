@@ -32,12 +32,14 @@ TO_PROTECT=(
 	"services/fysikalen.se/.env"
 	"services/ffusion.se/.env"
 	"services/fadderiet/.env"
+	"services/nyHemsida/.env"
 	"services/fnkth.se-flask/.env"
 
 	"services/f.kth.se/mariadb"
 	"services/fysikalen.se/mariadb"
 	"services/ffusion.se/mariadb"
 	"services/fadderiet/mariadb"
+	"services/nyHemsida/mariadb"
 
 	"services/cyberfohs/secretkey.txt"
 	"services/cyberfohs/data"

@@ -12,6 +12,7 @@ services:
       - wordpress-fysikalen.se
       - wordpress-ffusion.se
       - wordpress-fadderiet
+      - wordpress-nyHemsida
       - sangbok
       - kons-count
         # - cyberfohs
@@ -32,6 +33,7 @@ services:
       - ./services/fysikalen.se/wordpress:/fysikalen.se/wordpress
       - ./services/ffusion.se/wordpress:/ffusion.se/wordpress
       - ./services/fadderiet/wordpress:/f.kth.se/fadderiet
+      - ./services/nyHemsida/wordpress:/f.kth.se/nyHemsida
 
       - ./services/kons-count/static:/f.kth.se/counter
       - ./services/namndkompassen:/f.kth.se/namndkompassen
@@ -205,6 +207,41 @@ services:
     environment:
       WORDPRESS_DB_HOST: mariadb-fadderiet
       WORDPRESS_DB_NAME: fadderiet
+      WORDPRESS_TABLE_PREFIX: wp_
+
+
+  # f.kth.se/nyHemsida Wordpress and Database
+  mariadb-nyHemsida:
+    container_name: mariadb-nyHemsida
+    image: docker.io/mariadb
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+    restart: unless-stopped
+    volumes:
+      - ./services/nyHemsida/mariadb:/var/lib/mysql
+    env_file: ./services/nyHemsida/.env
+    environment:
+      MARIADB_DATABASE: nyhemsida
+
+
+  wordpress-nyHemsida:
+    container_name: wordpress-nyHemsida
+    image: docker.io/wordpress:7.0.2-php8.4-fpm-alpine
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+    restart: unless-stopped
+    volumes:
+      - ./services/nyHemsida/wordpress:/var/www/html/
+    depends_on:
+      - mariadb-nyHemsida
+    env_file: ./services/nyHemsida/.env
+    environment:
+      WORDPRESS_DB_HOST: mariadb-nyHemsida
+      WORDPRESS_DB_NAME: nyhemsida
       WORDPRESS_TABLE_PREFIX: wp_
 
   # Other apps for f.kth.se
