@@ -52,7 +52,7 @@ services:
       - ./services/misc/f.png:/f.kth.se/f.png
       - ./services/misc/logo.png:/f.kth.se/logo.png
       - ./services/misc/robots.txt:/f.kth.se/robots.txt
-      
+
       - ./services/fn-crm:/fn-crm
 
         #- ./services/bittan_marke/static:/f.kth.se/bittan-marke-django/static
@@ -94,7 +94,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.40'
+          cpus: '0.50'
     restart: unless-stopped
     volumes:
       - ./services/f.kth.se/wordpress:/var/www/html/
@@ -127,7 +127,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.30'
+          cpus: '0.25'
     restart: unless-stopped
     volumes:
       - ./services/fysikalen.se/wordpress:/var/www/html/
@@ -162,7 +162,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: '0.25'
     restart: unless-stopped
     volumes:
       - ./services/ffusion.se/wordpress:/var/www/html/
@@ -197,7 +197,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.20'
+          cpus: '0.25'
     restart: unless-stopped
     volumes:
       - ./services/fadderiet/wordpress:/var/www/html/
@@ -232,7 +232,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.20'
+          cpus: '0.25'
     restart: unless-stopped
     volumes:
       - ./services/nyHemsida/wordpress:/var/www/html/
@@ -253,7 +253,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: '0.25'
 
 
   ## Kons Count
@@ -263,7 +263,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: '0.10'
     volumes:
       - ./services/kons-count/redis/:/data
 
@@ -429,16 +429,16 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: '0.35'
     volumes:
       - ./services/fn-crm/fn-crm-twenty-server-local-data:/app/packages/twenty-server/.local-storage
     ports:
       - "3000:3000"
-    env_file: 
+    env_file:
       - path: ./services/fn-crm/.env
         required: true
     environment:
-      NODE_PORT: 3000 
+      NODE_PORT: 3000
       PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-fn-crm-twenty-db}:${PG_DATABASE_PORT:-5432}/${PG_DATABASE_NAME:-default}
       REDIS_URL: ${REDIS_URL:-redis://fn-crm-twenty-redis:6379}
       DISABLE_DB_MIGRATIONS: ${DISABLE_DB_MIGRATIONS}
@@ -447,7 +447,7 @@ services:
       STORAGE_S3_REGION: ${STORAGE_S3_REGION}
       STORAGE_S3_NAME: ${STORAGE_S3_NAME}
       STORAGE_S3_ENDPOINT: ${STORAGE_S3_ENDPOINT}
-  
+
     depends_on:
       fn-crm-twenty-db:
         condition: service_healthy
@@ -459,7 +459,7 @@ services:
       timeout: 5s
       retries: 20
     restart: always
-  
+
   fn-crm-twenty-worker:
     container_name: fn-crm-twenty-worker
     image: twentycrm/twenty:${TAG:-latest}
@@ -482,7 +482,7 @@ services:
       STORAGE_S3_NAME: ${STORAGE_S3_NAME}
       STORAGE_S3_ENDPOINT: ${STORAGE_S3_ENDPOINT}
       APP_SECRET: ${APP_SECRET:-replace_me_with_a_random_string}
-  
+
   fn-crm-twenty-db:
     container_name: fn-crm-twenty-db
     image: postgres:16
@@ -503,7 +503,7 @@ services:
       timeout: 5s
       retries: 10
     restart: always
-  
+
   fn-crm-twenty-redis:
     container_name: fn-crm-twenty-redis
     image: redis
