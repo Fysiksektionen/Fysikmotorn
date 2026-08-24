@@ -520,7 +520,7 @@ services:
       timeout: 5s
       retries: 10
 
-  # Passbolt - lösenordshanterare för funktionärer (https://passbolt.f.kth.se)
+  # Passbolt - lösenordshanterare för funktionärer (https://passbolt.fysiksektionen.se)
   mariadb-passbolt:
     container_name: mariadb-passbolt
     image: docker.io/mariadb
@@ -551,7 +551,7 @@ services:
       - ./services/passbolt/images:/usr/share/php/passbolt/webroot/img/public
     env_file: ./services/passbolt/.env
     environment:
-      APP_FULL_BASE_URL: https://passbolt.f.kth.se
+      APP_FULL_BASE_URL: https://passbolt.fysiksektionen.se
       DATASOURCES_DEFAULT_HOST: mariadb-passbolt
       DATASOURCES_DEFAULT_PORT: 3306
       DATASOURCES_DEFAULT_DATABASE: passbolt
