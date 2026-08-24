@@ -21,6 +21,7 @@ services:
       - fnkth.se-flask
         # - valkompassen
       - fn-crm-twenty-server
+      - passbolt
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
 
@@ -518,4 +519,42 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+
+  # Passbolt - lösenordshanterare för funktionärer (https://passbolt.f.kth.se)
+  mariadb-passbolt:
+    container_name: mariadb-passbolt
+    image: docker.io/mariadb
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+    restart: unless-stopped
+    volumes:
+      - ./services/passbolt/mariadb:/var/lib/mysql
+    env_file: ./services/passbolt/.env
+    environment:
+      MARIADB_DATABASE: passbolt
+
+  passbolt:
+    container_name: passbolt
+    image: passbolt/passbolt:${PASSBOLT_VERSION}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+    restart: unless-stopped
+    depends_on:
+      - mariadb-passbolt
+    volumes:
+      - ./services/passbolt/gpg:/etc/passbolt/gpg
+      - ./services/passbolt/jwt:/etc/passbolt/jwt
+      - ./services/passbolt/images:/usr/share/php/passbolt/webroot/img/public
+    env_file: ./services/passbolt/.env
+    environment:
+      APP_FULL_BASE_URL: https://passbolt.f.kth.se
+      DATASOURCES_DEFAULT_HOST: mariadb-passbolt
+      DATASOURCES_DEFAULT_PORT: 3306
+      DATASOURCES_DEFAULT_DATABASE: passbolt
+      # nginx terminates TLS in front of this container, see nginx.conf
+      PASSBOLT_SSL_FORCE: "false"
 

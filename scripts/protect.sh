@@ -35,6 +35,11 @@ TO_PROTECT=(
 	"services/nyHemsida/.env"
 	"services/fnkth.se-flask/.env"
 
+	"services/passbolt/.env"
+	"services/passbolt/mariadb"
+	"services/passbolt/gpg"
+	"services/passbolt/jwt"
+
 	"services/f.kth.se/mariadb"
 	"services/fysikalen.se/mariadb"
 	"services/ffusion.se/mariadb"
