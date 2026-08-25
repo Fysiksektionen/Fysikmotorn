@@ -557,4 +557,6 @@ services:
       DATASOURCES_DEFAULT_DATABASE: passbolt
       # nginx terminates TLS in front of this container, see nginx.conf
       PASSBOLT_SSL_FORCE: "false"
+      PASSBOLT_GPG_SERVER_KEY_EMAIL: passbolt@fysiksektionen.se
+      PASSBOLT_GPG_SERVER_KEY_NAME: "Passbolt Fysiksektionen"
 
