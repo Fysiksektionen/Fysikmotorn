@@ -69,7 +69,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: "0.15"
     volumes:
       - ./services/certbot/static/:/var/www/certbot/
       - ./services/certbot/conf/:/etc/letsencrypt/
@@ -81,7 +81,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: "0.15"
     restart: unless-stopped
     volumes:
       - ./services/f.kth.se/mariadb:/var/lib/mysql
@@ -95,7 +95,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.50'
+          cpus: "0.50"
     restart: unless-stopped
     volumes:
       - ./services/f.kth.se/wordpress:/var/www/html/
@@ -114,7 +114,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: "0.15"
     restart: unless-stopped
     volumes:
       - ./services/fysikalen.se/mariadb/:/var/lib/mysql
@@ -128,7 +128,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.25'
+          cpus: "0.25"
     restart: unless-stopped
     volumes:
       - ./services/fysikalen.se/wordpress:/var/www/html/
@@ -140,7 +140,6 @@ services:
       WORDPRESS_DB_NAME: fysikalense
       WORDPRESS_TABLE_PREFIX: wp_
 
-
   # ffusion.se Wordpress and Database
   mariadb-ffusion.se:
     container_name: mariadb-ffusion.se
@@ -148,7 +147,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: "0.15"
     restart: unless-stopped
     volumes:
       - ./services/ffusion.se/mariadb:/var/lib/mysql
@@ -156,14 +155,13 @@ services:
     environment:
       MARIADB_DATABASE: ffusionse
 
-
   wordpress-ffusion.se:
     container_name: wordpress-ffusion.se
     image: docker.io/wordpress:6.4.3-php8.1-fpm-alpine
     deploy:
       resources:
         limits:
-          cpus: '0.25'
+          cpus: "0.25"
     restart: unless-stopped
     volumes:
       - ./services/ffusion.se/wordpress:/var/www/html/
@@ -175,7 +173,6 @@ services:
       WORDPRESS_DB_NAME: ffusionse
       WORDPRESS_TABLE_PREFIX: wp_
 
-
   # f.kth.se/fadderiet Wordpress and Database
   mariadb-fadderiet:
     container_name: mariadb-fadderiet
@@ -183,7 +180,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: "0.15"
     restart: unless-stopped
     volumes:
       - ./services/fadderiet/mariadb:/var/lib/mysql
@@ -191,14 +188,13 @@ services:
     environment:
       MARIADB_DATABASE: fadderiet
 
-
   wordpress-fadderiet:
     container_name: wordpress-fadderiet
     image: docker.io/wordpress:6.4.3-php8.1-fpm-alpine
     deploy:
       resources:
         limits:
-          cpus: '0.25'
+          cpus: "0.25"
     restart: unless-stopped
     volumes:
       - ./services/fadderiet/wordpress:/var/www/html/
@@ -210,7 +206,6 @@ services:
       WORDPRESS_DB_NAME: fadderiet
       WORDPRESS_TABLE_PREFIX: wp_
 
-
   # f.kth.se/nyHemsida Wordpress and Database
   mariadb-nyHemsida:
     container_name: mariadb-nyHemsida
@@ -218,7 +213,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: "0.15"
     restart: unless-stopped
     volumes:
       - ./services/nyHemsida/mariadb:/var/lib/mysql
@@ -226,14 +221,13 @@ services:
     environment:
       MARIADB_DATABASE: nyhemsida
 
-
   wordpress-nyHemsida:
     container_name: wordpress-nyHemsida
     image: docker.io/wordpress:7.0.2-php8.4-fpm-alpine
     deploy:
       resources:
         limits:
-          cpus: '0.25'
+          cpus: "0.25"
     restart: unless-stopped
     volumes:
       - ./services/nyHemsida/wordpress:/var/www/html/
@@ -254,8 +248,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.25'
-
+          cpus: "0.25"
 
   ## Kons Count
   kons-count-redis:
@@ -264,7 +257,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.10'
+          cpus: "0.10"
     volumes:
       - ./services/kons-count/redis/:/data
 
@@ -274,7 +267,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: "0.15"
     volumes:
       - ./services/kons-count/server/service_account_auth_file.json:/server/service_account_auth_file.json
       - ./services/kons-count/server/.env:/server/.env
@@ -285,11 +278,20 @@ services:
   cyberfohs:
     container_name: cyberfohs
     image: ghcr.io/fysiksektionen/cyberfohs-appen:${CYBERFOHS_VERSION}
-    command: ["gunicorn", "-c", "config/gunicorn/dev.py", "--access-logfile", "-", "--error-logfile", "-"]
+    command:
+      [
+        "gunicorn",
+        "-c",
+        "config/gunicorn/dev.py",
+        "--access-logfile",
+        "-",
+        "--error-logfile",
+        "-",
+      ]
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: "0.15"
     volumes:
       - ./services/cyberfohs/static:/src/static
       - ./services/cyberfohs/media:/src/media
@@ -328,24 +330,24 @@ services:
   #     bittan_marke_postgres:
   #       condition: service_healthy
 
-      # bittan_marke_postgres:
-      #   container_name: bittan_marke_postgres
-      #   image: postgres
-      #   deploy:
-      #     resources:
-      #       limits:
-      #         cpus: '0.15'
-      #   volumes:
-      #     - ./services/bittan_marke/postgres_data:/var/lib/postgresql/data
-      #   env_file: ./services/bittan_marke/bittan_marke_postgres.env
-      #   environment:
-      #     POSTGRES_DB: bittan_marke_db
-      #     POSTGRES_USER: postgres
-      #   healthcheck:
-      #     test: ["CMD-SHELL", "pg_isready -U postgres"]
-      #     interval: 1s
-      #     timeout: 5s
-      #     retries: 10
+  # bittan_marke_postgres:
+  #   container_name: bittan_marke_postgres
+  #   image: postgres
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: '0.15'
+  #   volumes:
+  #     - ./services/bittan_marke/postgres_data:/var/lib/postgresql/data
+  #   env_file: ./services/bittan_marke/bittan_marke_postgres.env
+  #   environment:
+  #     POSTGRES_DB: bittan_marke_db
+  #     POSTGRES_USER: postgres
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U postgres"]
+  #     interval: 1s
+  #     timeout: 5s
+  #     retries: 10
 
   ## bittan_fysikalen
   # bittan-fysikalen-server:
@@ -396,14 +398,14 @@ services:
   #     timeout: 5s
   #     retries: 10
 
-      # fnkth.se
+  # fnkth.se
   fnkth.se-flask:
     container_name: fnkth.se-flask
     image: ghcr.io/fysiksektionens-naringslivsnamnd/hemsida-backend:${FNKTHSE_VERSION}
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: "0.15"
     volumes:
       - ./services/fnkth.se-flask/.env:/app/.env
     restart: always
@@ -423,14 +425,14 @@ services:
   #     PORT: 5000
   #     DEBUG: false
 
-    ## fn-crm
+  ## fn-crm
   fn-crm-twenty-server:
     container_name: fn-crm-twenty-server
     image: twentycrm/twenty:${TAG:-latest}
     deploy:
       resources:
         limits:
-          cpus: '0.35'
+          cpus: "0.35"
     volumes:
       - ./services/fn-crm/fn-crm-twenty-server-local-data:/app/packages/twenty-server/.local-storage
     ports:
@@ -467,7 +469,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: "0.15"
     volumes:
       - ./services/fn-crm/server-local-data:/app/packages/twenty-server/.local-storage
     command: ["yarn", "worker:prod"]
@@ -490,7 +492,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: "0.15"
     volumes:
       - ./services/fn-crm/fn-crm-twenty-db-data:/var/lib/postgresql/data
     env_file: ./services/fn-crm/.env
@@ -511,7 +513,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: "0.15"
     restart: always
     command: ["--maxmemory-policy", "noeviction"]
     healthcheck:
@@ -527,7 +529,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: "0.15"
     restart: unless-stopped
     volumes:
       - ./services/passbolt/mariadb:/var/lib/mysql
@@ -541,7 +543,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.20'
+          cpus: "0.20"
     restart: unless-stopped
     depends_on:
       - mariadb-passbolt
@@ -560,3 +562,15 @@ services:
       PASSBOLT_GPG_SERVER_KEY_EMAIL: passbolt@fysiksektionen.se
       PASSBOLT_GPG_SERVER_KEY_NAME: "Passbolt Fysiksektionen"
 
+  konsfekt:
+    container_name: konsfekt
+    image: ghcr.io/fysiksektionen/konsfekt:latest
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+    env_file: ./project-ops/konsfekt/.env
+    volumes:
+      - ./servives/konsfekt/db:/konsfekt/db
+      - ./services/konsfekt/permission_table.json:/konsfekt/permission_table.json
+      - ./services/konsfekt/certificates:/konsfekt/certificates
