@@ -92,7 +92,7 @@ services:
 
   wordpress-f.kth.se:
     container_name: wordpress-f.kth.se
-    image: docker.io/wordpress:6.4.3-php8.1-fpm-alpine
+    image: docker.io/wordpress:6.4.3-php8.3-fpm-alpine
     deploy:
       resources:
         limits:
@@ -125,7 +125,7 @@ services:
 
   wordpress-fysikalen.se:
     container_name: wordpress-fysikalen.se
-    image: docker.io/wordpress:6.4.3-php8.1-fpm-alpine
+    image: docker.io/wordpress:6.4.3-php8.3-fpm-alpine
     deploy:
       resources:
         limits:
@@ -158,7 +158,7 @@ services:
 
   wordpress-ffusion.se:
     container_name: wordpress-ffusion.se
-    image: docker.io/wordpress:6.4.3-php8.1-fpm-alpine
+    image: docker.io/wordpress:6.4.3-php8.3-fpm-alpine
     deploy:
       resources:
         limits:
@@ -191,7 +191,7 @@ services:
 
   wordpress-fadderiet:
     container_name: wordpress-fadderiet
-    image: docker.io/wordpress:6.4.3-php8.1-fpm-alpine
+    image: docker.io/wordpress:6.4.3-php8.3-fpm-alpine
     deploy:
       resources:
         limits:
