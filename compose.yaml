@@ -92,7 +92,7 @@ services:
 
   wordpress-f.kth.se:
     container_name: wordpress-f.kth.se
-    image: docker.io/wordpress:6.4.3-php8.3-fpm-alpine
+    image: docker.io/wordpress:7.1-php8.3-fpm-alpine
     deploy:
       resources:
         limits:
